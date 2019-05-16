@@ -1,2 +1,3 @@
 #!/usr/bin/env dash
-bash $(ls ~/paperbenni/dm/* | dmenu)
+PAPERAPP=$(cat ~/paperbenni/menus/apps | dmenu)
+bash ~/paperbenni/menus/dm/$PAPERAPP.sh

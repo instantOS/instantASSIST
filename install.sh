@@ -13,4 +13,3 @@ rm -rf .git
 rm *.md
 rm install.sh
 chmod +x dm/*.sh
-chmod +x start.sh
