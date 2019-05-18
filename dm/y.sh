@@ -7,5 +7,6 @@ if ! echo "$LINK" | egrep 'youtube|soundcloud|vimeo'; then
 fi
 
 cd ~/paperbenni/music
-
+echo "ytdl" > ~/.status
 youtube-dl -x --audio-format mp3 "$LINK"
+echo "|" > ~/.status
