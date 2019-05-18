@@ -1,7 +1,10 @@
 #!/bin/bash
+
 if pgrep ffmpeg; then
-    pkill ffmpeg
-    exit 0
+    if timeout 10 inotifywait --event modify ~/paperbenni/recordings; then
+        pkill ffmpeg
+        exit 0
+    fi
 fi
 
 slop=$(slop -f "%x %y %w %h %g %i") || exit 1

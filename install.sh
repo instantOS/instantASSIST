@@ -4,7 +4,7 @@ rm -rf paperbenni/menus
 mkdir paperbenni
 cd paperbenni
 mkdir screenshots
-mkdir recordings
+mkdir recordings music
 git clone --depth=1 "https://github.com/paperbenni/menus.git"
 cd menus
 sudo mv paperapps /usr/bin

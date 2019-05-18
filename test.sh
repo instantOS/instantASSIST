@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 rm -rf ~/paperbenni
 mkdir -p ~/paperbenni/screenshots
-mkdir ~/paperbenni/recordings
-cp -r ./* ~/paperbenni
+pushd ~/paperbenni
+mkdir recordings
+mkdir music
+mkdir menus
+popd
+cp -r ./* ~/paperbenni/menus
