@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 cd
-rm -rf paperbenni/menus
+rm -rf paperbenni
 mkdir paperbenni
 cd paperbenni
 mkdir screenshots
