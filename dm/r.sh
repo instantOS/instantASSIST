@@ -1,15 +1,17 @@
 #!/bin/bash
 
+# set up screen recordings with ffmpeg, allowing you to choose an area
+
 screencast() {
     ffmpeg -y \
         -f x11grab \
-        -framerate 60 \
+        -framerate 24 \
         -s "$W"x"$H" \
         -i :0.0+$X,$Y \
         -f alsa -i default \
         -r 30 \
-        -c:v libx264rgb -crf 0 -preset ultrafast -c:a flac \
-        "$HOME/paperbenni/recordings/screencast-$(date '+%y%m%d-%H%M-%S').mkv" &
+        -c:v h264 -c:a flac \
+        "$HOME/paperbenni/recordings/creencast-$(date '+%y%m%d-%H%M-%S').mkv" &
     echo $! >/tmp/recordingpid
 }
 

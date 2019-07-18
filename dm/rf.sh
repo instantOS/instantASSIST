@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# screen record the full screen
 
 screencast() { \
 	ffmpeg -y \

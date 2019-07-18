@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+
+echo "installing paperbenni's dmenu menus"
 cd
 rm -rf paperbenni
 mkdir paperbenni
