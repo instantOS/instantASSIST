@@ -1,3 +1,4 @@
 #!/usr/bin/env dash
+# the main script for starting and accessing my dmenus
 PAPERAPP=$(cat ~/paperbenni/menus/apps | dmenu)
 bash ~/paperbenni/menus/dm/$PAPERAPP.sh

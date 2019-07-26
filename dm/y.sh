@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# download the clipboard link with youtube-dl
+ 
 LINK="$(xclip -o)"
 if ! echo "$LINK" | egrep 'youtube|soundcloud|vimeo'; then
     echo "not a video link"

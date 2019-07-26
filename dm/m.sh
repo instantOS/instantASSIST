@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+# m = music
+# opens spotify with adblock
+
 pgrep spotify && exit 0
 mkdir -p ~/.cache/spotblock
 cd ~/.cache/spotblock

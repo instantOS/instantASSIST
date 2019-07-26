@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
+
+# dmenu to choose a website to open in firefox
+
 LINK=$(cat ~/paperbenni/menus/data/firefox | dmenu)
 case "$LINK" in
-g)
+gh)
     firefox github.com
     ;;
 y)
@@ -14,9 +17,9 @@ h)
     firefox heroku.com
     ;;
 d)
-    firefox dsbmobile.com
+    firefox dsbmobile.de
     ;;
-    s)
-  firefox google.com
-  ;;
+g)
+    firefox google.com
+    ;;
 esac
