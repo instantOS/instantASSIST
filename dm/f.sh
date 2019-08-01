@@ -22,4 +22,7 @@ d)
 g)
     firefox google.com
     ;;
+    r)
+firefox reddit.com
+    ;;
 esac
