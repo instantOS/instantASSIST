@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+#################################################
+## install paperbenni shortcut dmenu shortcuts ##
+#################################################
+
 echo "installing paperbenni's dmenu menus"
 cd
 rm -rf paperbenni
@@ -18,4 +22,12 @@ sudo chmod +x /usr/bin/paperapps
 rm -rf .git
 rm *.md
 rm install.sh
+
+# build apps cache
+for i in dm/*; do
+    FILENAME=${i#*/}
+    NAME=${FILENAME%.*}
+    echo "$NAME" >>apps
+done
+
 chmod +x dm/*.sh
