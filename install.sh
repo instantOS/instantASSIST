@@ -17,11 +17,13 @@ mkdir -p paperbenni/menus
 cd paperbenni
 mkdir screenshots &>/dev/null
 mkdir recordings music &>/dev/null
-git clone --depth=1 "https://github.com/abba23/spotify-adblock-linux.git"
-cd spotify-adblock-linux
-sudo make install
-cd ..
-rm .rf spotify-adblock-linux
+
+if ! [ -e spotify-adblock-linux ]; then
+    git clone --depth=1 "https://github.com/abba23/spotify-adblock-linux.git"
+    cd spotify-adblock-linux
+    sudo make install
+    cd ..
+fi
 
 git clone --depth=1 "https://github.com/paperbenni/menus.git"
 cd menus
