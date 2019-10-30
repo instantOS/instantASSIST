@@ -8,22 +8,21 @@ echo "installing paperbenni's dmenu menus"
 cd
 
 # keep downloaded music
-if [ -e paperbenni]; then
-    if [ -e paperbenni/music]; then
-        echo "backing up music"
-        mv paperbenni/music .cache/papermusic
-    fi
-    rm -rf paperbenni
-    mkdir paperbenni
+if [ -e paperbenni/menus ]; then
+    rm -rf paperbenni/menus
 fi
 
+mkdir -p paperbenni/menus
+
 cd paperbenni
-mkdir screenshots
-mkdir recordings music
+mkdir screenshots &>/dev/null
+mkdir recordings music &>/dev/null
 git clone --depth=1 "https://github.com/abba23/spotify-adblock-linux.git"
 cd spotify-adblock-linux
-sudo make iństall
+sudo make install
 cd ..
+rm .rf spotify-adblock-linux
+
 git clone --depth=1 "https://github.com/paperbenni/menus.git"
 cd menus
 sudo mv paperapps /usr/bin
@@ -43,8 +42,3 @@ done
 chmod +x dm/*.sh
 
 cd
-
-if [ -e .papermusic ]; then
-    echo "restoring music"
-    mv .papermusic paperbenni/music
-fi
