@@ -33,6 +33,7 @@ rm *.md
 rm install.sh
 
 # build apps cache
+rm apps
 for i in dm/*; do
     FILENAME=${i#*/}
     NAME=${FILENAME%.*}
