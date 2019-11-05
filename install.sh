@@ -38,8 +38,12 @@ rm apps
 for i in dm/*; do
     FILENAME=${i#*/}
     NAME=${FILENAME%.*}
-    echo "$NAME" >>apps
+    echo "$NAME" >>apps2
 done
+
+# sort by length
+cat apps2 | sort | awk '{ print length, $0 }' | sort -n -s | cut -d" " -f2- >apps
+rm apps2
 
 chmod +x dm/*.sh
 
