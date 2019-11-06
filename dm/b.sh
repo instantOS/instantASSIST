@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BRIGHTNESS=$(seq 0 10 100 | dmenu -p 'brighness')
+BRIGHTNESS=$(printf "%d\n" {0..100..10} | dmenu -p 'brighness')
 if [ -z "$BRIGHTNESS" ]; then
     exit
 fi
