@@ -29,9 +29,8 @@ git clone --depth=1 "https://github.com/paperbenni/menus.git"
 cd menus
 sudo mv paperapps /usr/bin
 sudo chmod +x /usr/bin/paperapps
-rm -rf .git
+rm -rf .git install.sh
 rm *.md
-rm install.sh
 
 # build apps cache
 rm apps
@@ -42,7 +41,7 @@ for i in dm/*; do
 done
 
 # sort by length
-cat apps2 | sort | awk '{ print length, $0 }' | sort -n -s | cut -d" " -f2- >apps
+sort apps2 | awk '{ print length, $0 }' | sort -n -s | cut -d" " -f2- >apps
 rm apps2
 
 chmod +x dm/*.sh
