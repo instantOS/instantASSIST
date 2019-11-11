@@ -5,14 +5,20 @@
 #######################################
 
 randomwallpaper() {
-    WALLPAPERNAME="$(curl 'https://storage.googleapis.com/chromeos-wallpaper-public/' |
-        egrep -o '<Key>[^<>]*</Key>' | grep 'resolution.*\.jpg' |
-        grep -o '>.*<' | grep -o '[^<>]*' |
-        shuf | head -1)"
-    grep -q 'resolution' <<<$WALLPAPERNAME || return 1
-    wget -O ~/paperbenni/wallpaper.jpg "https://storage.googleapis.com/chromeos-wallpaper-public/$WALLPAPERNAME"
-    feh --bg-scale ~/paperbenni/wallpaper.jpg
+    file="$HOME/paperbenni/wallpaper.jpg"
+    url='https://storage.googleapis.com/chromeos-wallpaper-public'
 
+    fetch(){
+        IFS='<' read -a array <<< "$(wget -O - -q "$url")"
+        for field in "${array[@]}"; {
+            if [[ "$field" == *_resolution.jpg ]]; then
+                IFS='>' read -a key <<< "$field"
+                printf "%s\n" "${key[1]}"
+            fi
+        }
+    }
+
+    wget -qO "$file" "$url/$(fetch | shuf -n 1)" && feh --bg-scale "$file"
 }
 
 randomwallpaper

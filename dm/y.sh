@@ -2,14 +2,14 @@
 
 # download the clipboard link with youtube-dl
 
-LINK="$(xclip -o)"
-if ! echo "$LINK" | egrep 'youtube|soundcloud|vimeo'; then
-    echo "not a video link"
+LINK="$(xclip -o -selection clipboard)"
+if ! [[ "$LINK" =~ (youtube|soundcloud|vimeo) ]]; then
+    echo "not a supported video link" >&2
     exit 1
 fi
-cd
-mkdir -p paperbenni/music &>/dev/null
-cd paperbenni/music
+
+mkdir -p $HOME/paperbenni/music &>/dev/null
+cd $HOME/paperbenni/music
 echo "ytdl" >~/.status
 youtube-dl -x --audio-format mp3 "$LINK"
 echo "|" >~/.status
