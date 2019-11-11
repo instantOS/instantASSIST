@@ -14,3 +14,5 @@ randomwallpaper() {
     feh --bg-scale ~/paperbenni/wallpaper.jpg
 
 }
+
+randomwallpaper
