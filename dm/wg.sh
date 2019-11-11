@@ -20,3 +20,5 @@ randomwallpaper() {
 
     wget -qO "$file" "$url/$(fetch | shuf -n 1)" && feh --bg-scale "$file"
 }
+
+randomwallpaper
