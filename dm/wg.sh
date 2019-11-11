@@ -6,7 +6,7 @@
 
 randomwallpaper() {
     WALLPAPERNAME="$(curl 'https://storage.googleapis.com/chromeos-wallpaper-public/' |
-        egrep -o '<Key>[^<>]*</Key>' | grep 'resolution.*\.jpg' |
+        grep -Eo '<Key>[^<>]*</Key>' | grep 'resolution.*\.jpg' |
         grep -o '>.*<' | grep -o '[^<>]*' |
         shuf | head -1)"
     grep -q 'resolution' <<<$WALLPAPERNAME || return 1
