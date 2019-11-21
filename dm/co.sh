@@ -1,17 +1,18 @@
 #!/bin/bash
 
-if grep -iq 'ubuntu' </etc/os-release; then
-    if pgrep compton; then
-        pkill compton
-    else
-        compton &
-    fi
-fi
-
-if grep -iq 'arch' </etc/os-release; then
+# toggle compositor
+if pgrep compton; then
+    pkill compton
+    exit
+else
     if pgrep picom; then
         pkill picom
+        exit
     else
-        picom &
+        if command -v picom; then
+            picom
+        else
+            compton
+        fi
     fi
 fi
