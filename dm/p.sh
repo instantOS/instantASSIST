@@ -5,6 +5,7 @@ while :; do
 -
 j
 k
+m
 q' | dmenu -n)
     if [ "$CHOICE" -eq "$CHOICE" ] &>/dev/null; then
         xbacklight -set "$CHOICE"
@@ -13,16 +14,19 @@ q' | dmenu -n)
 
     case "$CHOICE" in
     +)
-        xbacklight -inc 5
+        pactl set-sink-volume 0 +5%
         ;;
     -)
-        xbacklight -dec 5
+        pactl set-sink-volume 0 -5%
         ;;
     j)
-        xbacklight -dec 5
+        pactl set-sink-volume 0 -5%
         ;;
     k)
-        xbacklight -inc 5
+        pactl set-sink-volume 0 +5%
+        ;;
+    m)
+        pactl set-sink-volume 0 0%
         ;;
     *)
         break
