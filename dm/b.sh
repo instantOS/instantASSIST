@@ -1,7 +1,30 @@
 #!/bin/bash
 
-BRIGHTNESS=$(printf "%d\n" {0..100..10} | dmenu -p 'brighness')
-if [ -z "$BRIGHTNESS" ]; then
-    exit
-fi
-xbacklight -set "$BRIGHTNESS1"
+while :; do
+    CHOICE=$(echo '+
+-
+q' | dmenu -n)
+    if [ "$CHOICE" -eq "$CHOICE" ] &>/dev/null; then
+        xbacklight -set "$CHOICE"
+        break
+    fi
+
+    case "$CHOICE" in
+    +)
+        xbacklight -inc 5
+        ;;
+    -)
+        xbacklight -dec 5
+        ;;
+    j)
+        xbacklight -dec 5
+        ;;
+    k)
+        xbacklight -inc 5
+        ;;
+    *)
+        break
+        ;;
+    esac
+
+done
