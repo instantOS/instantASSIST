@@ -26,7 +26,16 @@ q' | dmenu -n)
         pactl set-sink-volume 0 +5%
         ;;
     m)
-        pactl set-sink-volume 0 0%
+        if [ -e /tmp/pamute.txt ]; then
+            pactl set-sink-volume 0 "$(cat /tmp/pamute.txt)"
+            rm /tmp/pamute.txt
+        else
+            pactl set-sink-volume 0 0%
+            pactl list sinks | grep -oE '[0-9]{1,}%.*[0-9]{1,}%' |
+                grep -oE '^[0-9]{1,}%' >/tmp/pamute.txt
+        fi
+        break
+
         ;;
     *)
         break
