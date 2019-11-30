@@ -1,4 +1,5 @@
 #!/bin/bash
+# control pulseaudio volume from dmenu if you don't have the hardware keys or pa-applet
 
 while :; do
     CHOICE=$(echo '+
@@ -7,8 +8,9 @@ j
 k
 m
 q' | dmenu -n)
+
     if [ "$CHOICE" -eq "$CHOICE" ] &>/dev/null; then
-        xbacklight -set "$CHOICE"
+        pactl set-sink-volume 0 "$CHOICE"%
         break
     fi
 
@@ -26,16 +28,8 @@ q' | dmenu -n)
         pactl set-sink-volume 0 +5%
         ;;
     m)
-        if [ -e /tmp/pamute.txt ]; then
-            pactl set-sink-volume 0 "$(cat /tmp/pamute.txt)"
-            rm /tmp/pamute.txt
-        else
-            pactl set-sink-volume 0 0%
-            pactl list sinks | grep -oE '[0-9]{1,}%.*[0-9]{1,}%' |
-                grep -oE '^[0-9]{1,}%' >/tmp/pamute.txt
-        fi
+        pactl set-sink-mute 0 toggle
         break
-
         ;;
     *)
         break
