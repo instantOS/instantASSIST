@@ -35,7 +35,7 @@ rm -rf .git install.sh
 rm *.md
 
 # build apps cache
-rm apps
+rm apps &>/dev/null
 for i in dm/*; do
     FILENAME=${i#*/}
     NAME=${FILENAME%.*}
