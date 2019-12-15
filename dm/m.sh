@@ -1,10 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# m = music
-# opens spotify with adblock
+LETTER="$(cat ~/paperbenni/menus/data/m | dmenu | grep -o '^.')"
 
-pgrep spotify && exit 0
-mkdir -p ~/.cache/spotblock
-cd ~/.cache/spotblock
-test -e spotify-adblock.so || wget "http://spotifyblock.surge.sh/spotify-adblock.so"
-LD_PRELOAD=./spotify-adblock.so spotify
+xdotool type "$LETTER"

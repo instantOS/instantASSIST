@@ -9,7 +9,6 @@ cd
 
 dom='https://github.com'
 
-# keep downloaded music
 if [ -e paperbenni/menus ]; then
     rm -rf paperbenni/menus
 fi
