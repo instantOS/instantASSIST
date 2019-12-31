@@ -7,7 +7,7 @@ command -v spotify &>/dev/null || exit 0
 
 if pgrep spotify &>/dev/null; then
     [ -e /tmp/spotifyid ] || exit
-    grep -q '{3,}*' </tmp/spotifyid || exit
+    grep -Eq '{3,}*' </tmp/spotifyid || exit
     if wmctrl -l | grep -iq "$(cat /tmp/spotifyid)"; then
         dswitch "$(cat /tmp/spotifyid)"
     fi
