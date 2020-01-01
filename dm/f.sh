@@ -2,7 +2,7 @@
 
 # dmenu to choose a website to open in firefox
 
-LINK=$(cat ~/paperbenni/menus/data/firefox | dmenu)
+LINK=$(cat ~/paperbenni/menus/data/firefox | dmenu -n)
 case "$LINK" in
 gh)
     firefox github.com

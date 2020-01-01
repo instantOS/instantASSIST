@@ -26,7 +26,7 @@ if ! [ -e spotify-adblock-linux ]; then
     cd ..
 fi
 
-git clone --depth=1 "$dom/paperbenni/menus.git"
+git clone --depth=1 "$dom/paperbenni/menus.git" &> /dev/null
 cd menus
 sudo mv paperapps /usr/bin
 sudo chmod +x /usr/bin/paperapps
