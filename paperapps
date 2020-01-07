@@ -2,5 +2,28 @@
 # the main script for starting and accessing my dmenus
 PAPERAPP=$(cat ~/paperbenni/menus/apps | dmenu -n -h 32 -F)
 [ -z "$PAPERAPP" ] && exit
-[ -e ~/paperbenni/menus/dm/$PAPERAPP.sh ] &&
-    bash ~/paperbenni/menus/dm/$PAPERAPP.sh
+
+TEMP=$(ls ~/paperbenni/menus/dm/$PAPERAPP* | sed 's/^.*\///g' | grep -o '^[^\.]*' | grep "^$PAPERAPP" | grep -o '.$' | uniq)
+
+if [ -n "$TEMP" ] && [ $(echo "$TEMP" | wc -l) -gt "1" ]; then
+
+    if [ -e ~/paperbenni/menus/dm/$PAPERAPP$PAPERAPP.sh ]; then
+        APP2=$(echo "$TEMP" | dmenu -n -h 32 -F) &
+        sleep 1
+        pkill dmenu
+    else
+        APP2=$(echo "$TEMP" | dmenu -n -h 32 -F)
+    fi
+
+    if [ -n "$APP2" ]; then
+    echo "$PAPERAPP$APP2.sh"
+        [ -e ~/paperbenni/menus/dm/$PAPERAPP$APP2.sh ] &&
+            bash ~/paperbenni/menus/dm/$PAPERAPP$APP2.sh
+    else
+        [ -e ~/paperbenni/menus/dm/$PAPERAPP$PAPERAPP.sh ] &&
+            bash ~/paperbenni/menus/dm/$PAPERAPP$PAPERAPP.sh
+    fi
+else
+    [ -e ~/paperbenni/menus/dm/$PAPERAPP$PAPERAPP.sh ] &&
+        bash ~/paperbenni/menus/dm/$PAPERAPP$PAPERAPP.sh
+fi

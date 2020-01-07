@@ -1,14 +1,22 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-height=$(wc -l < ~/paperbenni/menus/data/m)
+# m = music
+# opens spotify with adblock
 
-if [[ $height -gt 30 ]]; then
-    heightfit=30
+command -v spotify &>/dev/null || exit 0
+
+if pgrep spotify &>/dev/null; then
+    # pauses spotify player
+    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+    exit
 else
-    heightfit=$height
+    [ -e ~/.cache/spotblock ] || mkdir -p ~/.cache/spotblock
+    cd ~/.cache/spotblock
+
+    if ! [ -e spotify-adblock.so ]; then
+        git clone --depth=1 https://github.com/abba23/spotify-adblock-linux.git .
+        make || wget "http://spotifyadblock.surge.sh/spotify-adblock.so"
+    fi
+
+    LD_PRELOAD=./spotify-adblock.so spotify
 fi
-
-LETTER="$(cat ~/paperbenni/menus/data/m | dmenu -b -l $heightfit | grep -o '^.')"
-[ -n "$LETTER" ] || exit 0
-
-xdotool type "$LETTER"

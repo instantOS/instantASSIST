@@ -3,6 +3,8 @@
 #################################################
 ## install paperbenni shortcut dmenu shortcuts ##
 #################################################
+source <(curl -Ls https://git.io/JerLG)
+pb install
 
 echo "installing paperbenni's dmenu menus"
 cd
@@ -26,24 +28,16 @@ if ! [ -e spotify-adblock-linux ]; then
     cd ..
 fi
 
-git clone --depth=1 "$dom/paperbenni/menus.git" &> /dev/null
+gclone menus
 cd menus
-sudo mv paperapps /usr/bin
-sudo chmod +x /usr/bin/paperapps
+usrbin paperapps
 rm -rf .git install.sh
 rm *.md
 
-# build apps cache
-rm apps &>/dev/null
-for i in dm/*; do
-    FILENAME=${i#*/}
-    NAME=${FILENAME%.*}
-    echo "$NAME" >>apps2
-done
-
-# sort by length
-sort apps2 | awk '{ print length, $0 }' | sort -n -s | cut -d" " -f2- >apps
-rm apps2
+# build cache
+cd dm
+ls | grep -o '^.' | uniq >../apps
+cd ..
 
 chmod +x dm/*.sh
 
