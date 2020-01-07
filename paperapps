@@ -3,7 +3,7 @@
 PAPERAPP=$(cat ~/paperbenni/menus/apps | dmenu -n -h 32 -F)
 [ -z "$PAPERAPP" ] && exit
 
-TEMP=$(ls ~/paperbenni/menus/dm/$PAPERAPP* | sed 's/^.*\///g' | grep -o '^[^\.]*' | grep "^$PAPERAPP" | grep -o '.$' | uniq)
+TEMP=$(ls ~/paperbenni/menus/dm/$PAPERAPP*.sh | sed 's/^.*\///g' | grep -o '^[^\.]*' | grep "^$PAPERAPP" | grep -o '.$' | uniq)
 
 if [ -n "$TEMP" ] && [ $(echo "$TEMP" | wc -l) -gt "1" ]; then
 
@@ -16,7 +16,6 @@ if [ -n "$TEMP" ] && [ $(echo "$TEMP" | wc -l) -gt "1" ]; then
     fi
 
     if [ -n "$APP2" ]; then
-    echo "$PAPERAPP$APP2.sh"
         [ -e ~/paperbenni/menus/dm/$PAPERAPP$APP2.sh ] &&
             bash ~/paperbenni/menus/dm/$PAPERAPP$APP2.sh
     else
@@ -25,5 +24,8 @@ if [ -n "$TEMP" ] && [ $(echo "$TEMP" | wc -l) -gt "1" ]; then
     fi
 else
     [ -e ~/paperbenni/menus/dm/$PAPERAPP$PAPERAPP.sh ] &&
-        bash ~/paperbenni/menus/dm/$PAPERAPP$PAPERAPP.sh
+        bash ~/paperbenni/menus/dm/$PAPERAPP$PAPERAPP.sh && exit
+    
+    [ -e ~/paperbenni/menus/dm/$PAPERAPP.sh ] &&
+        bash ~/paperbenni/menus/dm/$PAPERAPP.sh && exit
 fi
