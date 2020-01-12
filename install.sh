@@ -37,7 +37,7 @@ fi
 rm -rf menus
 gitclone menus
 cd menus
-usrbin -f paperapps
+usrbin -f instantassist
 rm -rf .git install.sh *.md
 
 # build cache
