@@ -12,6 +12,7 @@ fi
 
 source <(curl -Ls https://git.io/JerLG)
 pb install
+pb git
 
 echo "installing instantASSIST"
 dom='https://github.com'
@@ -20,8 +21,8 @@ if [ -e /opt/instantos/menus/dm ]; then
     rm -rf /opt/instantos/menus/dm
 fi
 
-mkdir -p /opt/instantos/menus
-mkdir /tmp/instantmenus
+mkdir -p /opt/instantos/menus &> /dev/null
+mkdir /tmp/instantmenus &> /dev/null
 cd /tmp/instantmenus
 
 if ! [ -e /opt/instantos/spotify-adblock.so ]; then
@@ -33,9 +34,10 @@ if ! [ -e /opt/instantos/spotify-adblock.so ]; then
     rm -rf spotify-adblock-linux
 fi
 
-gclone menus
+rm -rf menus
+gitclone menus
 cd menus
-usrbin paperapps
+usrbin -f paperapps
 rm -rf .git install.sh *.md
 
 # build cache
@@ -46,3 +48,7 @@ chmod 755 dm/*.sh
 
 mv apps /opt/instantos/menus/apps
 mv dm /opt/instantos/menus/dm
+mv data /opt/instantos/menus/data
+
+cd ..
+rm -rf menus
