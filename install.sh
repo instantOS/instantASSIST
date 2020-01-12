@@ -1,44 +1,48 @@
 #!/usr/bin/env bash
 
-#################################################
-## install paperbenni shortcut dmenu shortcuts ##
-#################################################
+###########################
+## install instantASSIST ##
+###########################
+
+# please run as root
+if ! [ "$(whoami)" = "root" ]; then
+    echo "please run as root"
+    exit 1
+fi
+
 source <(curl -Ls https://git.io/JerLG)
 pb install
 
-echo "installing paperbenni's dmenu menus"
-cd
-
+echo "installing instantASSIST"
 dom='https://github.com'
 
-if [ -e paperbenni/menus ]; then
-    rm -rf paperbenni/menus
+if [ -e /opt/instantos/menus/dm ]; then
+    rm -rf /opt/instantos/menus/dm
 fi
 
-mkdir -p paperbenni/menus
+mkdir -p /opt/instantos/menus
+mkdir /tmp/instantmenus
+cd /tmp/instantmenus
 
-cd paperbenni
-mkdir screenshots &>/dev/null
-mkdir recordings music &>/dev/null
-
-if ! [ -e spotify-adblock-linux ]; then
+if ! [ -e /opt/instantos/spotify-adblock.so ]; then
     git clone --depth=1 "$dom/abba23/spotify-adblock-linux.git"
     cd spotify-adblock-linux
-    sudo make install
+    make
+    mv spotify-adblock.so /opt/instantos/spotify-adblock.so
     cd ..
+    rm -rf spotify-adblock-linux
 fi
 
 gclone menus
 cd menus
 usrbin paperapps
-rm -rf .git install.sh
-rm *.md
+rm -rf .git install.sh *.md
 
 # build cache
 cd dm
 ls | grep -o '^.' | uniq >../apps
 cd ..
+chmod 755 dm/*.sh
 
-chmod +x dm/*.sh
-
-cd
+mv apps /opt/instantos/menus/apps
+mv dm /opt/instantos/menus/dm
