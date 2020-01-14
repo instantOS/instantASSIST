@@ -21,8 +21,9 @@ if [ -e /opt/instantos/menus/dm ]; then
     rm -rf /opt/instantos/menus/dm
 fi
 
-mkdir -p /opt/instantos/menus &> /dev/null
-mkdir /tmp/instantmenus &> /dev/null
+rm -rf /opt/instantos/menus
+mkdir -p /opt/instantos/menus &>/dev/null
+mkdir /tmp/instantmenus &>/dev/null
 cd /tmp/instantmenus
 
 if ! [ -e /opt/instantos/spotify-adblock.so ]; then
