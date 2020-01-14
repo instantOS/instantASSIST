@@ -34,9 +34,9 @@ if ! [ -e /opt/instantos/spotify-adblock.so ]; then
     rm -rf spotify-adblock-linux
 fi
 
-rm -rf menus
-gitclone menus
-cd menus
+rm -rf instantASSIST
+gitclone instantOS/instantASSIST
+cd instantASSIST
 usrbin -f instantassist
 rm -rf .git install.sh *.md
 
@@ -51,4 +51,4 @@ mv dm /opt/instantos/menus/dm
 mv data /opt/instantos/menus/data
 
 cd ..
-rm -rf menus
+rm -rf instantASSIST
