@@ -2,10 +2,10 @@
 
 source <(curl -Ls https://git.io/JerLG)
 
-TEXT="$(echo test | dmenu -p 'spam text')"
+TEXT="$(echo test | instantmenu -p 'spam text')"
 zerocheck "$TEXT"
 
-LOOP="$(echo 10 | dmenu -p 'spam count')"
+LOOP="$(echo 10 | instantmenu -p 'spam count')"
 zerocheck "$LOOP"
 if ! [ "$LOOP" -eq "$LOOP" ]; then
     LOOP=10

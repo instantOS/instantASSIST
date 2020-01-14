@@ -1,4 +1,4 @@
 #!/bin/sh
-# run this if your win + p dmenu stops working
+# run this if your win + p instantmenu stops working
 
-rm ~/.cache/dmenu_run
+rm ~/.cache/instantmenu_run

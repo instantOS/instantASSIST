@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# dmenu to choose a website to open in firefox
+# instantmenu to choose a website to open in firefox
 
-LINK=$(cat /opt/instantos/menus/data/firefox | dmenu -n)
+LINK=$(cat /opt/instantos/menus/data/firefox | instantmenu -n)
 case "$LINK" in
 gh)
     firefox github.com

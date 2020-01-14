@@ -66,7 +66,7 @@ while :; do
 -
 j
 k
-q' | dmenu -n)
+q' | instantmenu -n)
 
     if [ "$CHOICE" -eq "$CHOICE" ] &>/dev/null; then
         brightness -set "$CHOICE"

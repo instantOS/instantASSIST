@@ -1,17 +1,17 @@
 #!/usr/bin/env dash
-# the main script for starting and accessing my dmenus
-PAPERAPP=$(cat /opt/instantos/menus/apps | dmenu -n -h 32 -F)
+# the main script for starting and accessing my instantmenus
+PAPERAPP=$(cat /opt/instantos/menus/apps | instantmenu -n -h 32 -F)
 [ -z "$PAPERAPP" ] && exit
 
 TEMP=$(ls /opt/instantos/menus/dm/$PAPERAPP*.sh | sed 's/^.*\///g' | grep -o '^[^\.]*' | grep "^$PAPERAPP" | grep -o '.$' | uniq)
 
 if [ -n "$TEMP" ] && [ $(echo "$TEMP" | wc -l) -gt "1" ]; then
     if [ -e /opt/instantos/menus/dm/$PAPERAPP$PAPERAPP.sh ]; then
-        APP2=$(echo "$TEMP" | dmenu -n -h 32 -F) &
+        APP2=$(echo "$TEMP" | instantmenu -n -h 32 -F) &
         sleep 1
-        pkill dmenu
+        pkill instantmenu
     else
-        APP2=$(echo "$TEMP" | dmenu -n -h 32 -F)
+        APP2=$(echo "$TEMP" | instantmenu -n -h 32 -F)
     fi
 
     if [ -n "$APP2" ]; then

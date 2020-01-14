@@ -1,5 +1,5 @@
 #!/bin/bash
-# control pulseaudio volume from dmenu if you don't have the hardware keys or pa-applet
+# control pulseaudio volume from instantmenu if you don't have the hardware keys or pa-applet
 
 pvolume() {
     if ! pactl set-sink-volume 0 "$1"; then
@@ -13,7 +13,7 @@ while :; do
 j
 k
 m
-q' | dmenu -n)
+q' | instantmenu -n)
 
     if [ "$CHOICE" -eq "$CHOICE" ] &>/dev/null; then
         pvolume "$CHOICE"%
