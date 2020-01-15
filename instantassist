@@ -5,26 +5,26 @@ PAPERAPP=$(cat /opt/instantos/menus/apps | instantmenu -n -h 32 -F)
 
 TEMP=$(ls /opt/instantos/menus/dm/$PAPERAPP*.sh | sed 's/^.*\///g' | grep -o '^[^\.]*' | grep "^$PAPERAPP" | grep -o '.$' | uniq)
 
+exescript() {
+    [ -e /opt/instantos/menus/dm/$1.sh ] &&
+        echo "executing $1" &&
+        bash /opt/instantos/menus/dm/$1.sh && exit
+}
+
 if [ -n "$TEMP" ] && [ $(echo "$TEMP" | wc -l) -gt "1" ]; then
     if [ -e /opt/instantos/menus/dm/$PAPERAPP$PAPERAPP.sh ]; then
-        APP2=$(echo "$TEMP" | instantmenu -n -h 32 -F) &
-        sleep 1
-        pkill instantmenu
+        APP2=$(echo "$TEMP" | instantmenu -n -h 32 -F)
     else
         APP2=$(echo "$TEMP" | instantmenu -n -h 32 -F)
     fi
 
     if [ -n "$APP2" ]; then
-        [ -e /opt/instantos/menus/dm/$PAPERAPP$APP2.sh ] &&
-            bash /opt/instantos/menus/dm/$PAPERAPP$APP2.sh
+        exescript $PAPERAPP$APP2
     else
-        [ -e /opt/instantos/menus/dm/$PAPERAPP$PAPERAPP.sh ] &&
-            bash /opt/instantos/menus/dm/$PAPERAPP$PAPERAPP.sh
+        exescript $PAPERAPP$PAPERAPP
+        exescript $PAPERAPP
     fi
 else
-    [ -e /opt/instantos/menus/dm/$PAPERAPP$PAPERAPP.sh ] &&
-        bash /opt/instantos/menus/dm/$PAPERAPP$PAPERAPP.sh && exit
-
-    [ -e /opt/instantos/menus/dm/$PAPERAPP.sh ] &&
-        bash /opt/instantos/menus/dm/$PAPERAPP.sh && exit
+    exescript $PAPERAPP$PAPERAPP
+    exescript $PAPERAPP
 fi
