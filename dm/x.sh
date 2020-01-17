@@ -1,12 +1,11 @@
 #!/bin/bash
 
-source <(curl -Ls https://git.io/JerLG)
-
 TEXT="$(echo test | instantmenu -p 'spam text')"
-zerocheck "$TEXT"
+[ -n "$TEXT" ] || exit
 
-LOOP="$(echo 10 | instantmenu -p 'spam count')"
-zerocheck "$LOOP"
+LOOP="$(echo 10 | instantmenu -p 'repeat')"
+[ -n "$LOOP" ] || exit
+
 if ! [ "$LOOP" -eq "$LOOP" ]; then
     LOOP=10
 fi

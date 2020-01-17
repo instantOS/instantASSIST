@@ -4,4 +4,4 @@
 ## chromecast like wallpaper changer ##
 #######################################
 
-bash "$HOME/instantos/wallpapers/wall.sh"
+bash $HOME/instantos/wallpapers/wall.sh 123
