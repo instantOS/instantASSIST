@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 # full screen screenshot
-import -window root ~/paperbenni/screenshots/$(date '+%Y%m%d%H%M%S').png
+import -window root $(xdg-user-dir PICTURES)/$(date '+%Y%m%d%H%M%S').png
