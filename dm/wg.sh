@@ -4,4 +4,4 @@
 ## chromecast like wallpaper changer ##
 #######################################
 
-/opt/instantos/scripts/wall.sh 123
+/opt/instantos/scripts/wall.sh google
