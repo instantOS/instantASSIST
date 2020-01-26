@@ -10,6 +10,9 @@ if [ -z "$ASSISTPREFIX" ]; then
         echo "please run as root"
         exit 1
     fi
+else
+    mkdir -p ${ASSISTPREFIX}/usr/bin
+    mkdir -p ${ASSISTPREFIX}/opt
 fi
 
 source <(curl -Ls https://git.io/JerLG)
@@ -40,8 +43,8 @@ fi
 rm -rf instantASSIST
 gitclone instantOS/instantASSIST
 cd instantASSIST
+chmod +x instantassist
 mv instantassist ${ASSISTPREFIX}/usr/bin/instantassist
-chmod +x ${ASSISTPREFIX}/usr/bin/instantassist
 
 rm -rf .git install.sh *.md
 
