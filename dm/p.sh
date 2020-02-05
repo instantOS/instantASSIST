@@ -1,10 +1,10 @@
 #!/bin/bash
 # control pulseaudio volume from instantmenu if you don't have the hardware keys or pa-applet
 
-PSINK=$(pactl list sinks | pcregrep -iM "sink.*\n.*running" | head -1 | grep -o '[0-9]*)
+PSINK=$(pactl list sinks | pcregrep -iM ".*(sink|ziel).*\n.*running" | head -1 | grep -o '[0-9]*')
 
 pvolume() {
-    pactl set-sink-volume $PSINK "$1"; then
+    pactl set-sink-volume $PSINK "$1"
 }
 
 while :; do
