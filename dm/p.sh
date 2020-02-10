@@ -1,5 +1,6 @@
 #!/bin/bash
-# control pulseaudio volume from instantmenu if you don't have the hardware keys or pa-applet
+
+# assist: adjust audio volume
 
 PSINK=$(pactl list sinks | pcregrep -iM ".*(sink|ziel).*\n.*running" | head -1 | grep -o '[0-9]*')
 

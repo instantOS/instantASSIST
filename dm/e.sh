@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# assist: type emojis or special symbols
+
 height=$(wc -l < /opt/instantos/menus/data/m)
 
 if [[ $height -gt 30 ]]; then

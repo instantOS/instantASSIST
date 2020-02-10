@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# assist: adjust display brightness
+
 if ! xbacklight &> /dev/null; then
     [ -e /etc/udev/rules.d/backlight.rules ] || exit
     BGPU="/sys/class/backlight/"$(cat /etc/udev/rules.d/backlight.rules | head -1 | \

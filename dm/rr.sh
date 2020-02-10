@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# set up screen recordings with ffmpeg, allowing you to choose an area
+# assist: set up screen recordings with ffmpeg, allowing you to choose an area
 
 screencast() {
     ffmpeg -y \

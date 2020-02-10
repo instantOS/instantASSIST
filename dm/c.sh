@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# toggle compositor
+# assist: toggle compositor
+
 if pgrep compton; then
     pkill compton
     exit

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# quickly swap monitors
+# assist: quickly swap monitors
 
 MONITORS=$(xrandr | grep -Eo 'HDMI-[0-9]*')
 # as of now only supports dual monitor setups

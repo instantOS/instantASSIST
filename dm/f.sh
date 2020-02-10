@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-# instantmenu to choose a website to open in firefox
+# assist: choose a website to open in firefox
 
 LINK=$(cat /opt/instantos/menus/data/firefox | instantmenu -n)
 case "$LINK" in
-gh)
+s)
     firefox github.com
     ;;
 y)
@@ -24,5 +24,8 @@ g)
     ;;
 r)
     firefox reddit.com
+    ;;
+f)
+    firefox
     ;;
 esac

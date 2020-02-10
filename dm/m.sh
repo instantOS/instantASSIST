@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# m = music
-# opens spotify with adblock
+# assist: open spotify or toggle pause/play if it's already open
 
 command -v spotify &>/dev/null || exit 0
 
