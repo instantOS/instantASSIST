@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#################################
-## bing like wallpaper changer ##
-#################################
+# assist: set bing daily photo as wallpaper
 
 instantwallpaper bing

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# assist: repeat a given text n times
+
 TEXT="$(echo test | instantmenu -p 'spam text')"
 [ -n "$TEXT" ] || exit
 

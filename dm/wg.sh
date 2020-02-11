@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#######################################
-## chromecast like wallpaper changer ##
-#######################################
+# assist: fetch random wallpaper from google
 
 instantwallpaper google

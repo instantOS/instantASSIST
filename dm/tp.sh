@@ -1,4 +1,5 @@
 #!/bin/sh
+
 # assist: run this if your pulseaudio hotkeys stop working
 
 pkill pulseaudio

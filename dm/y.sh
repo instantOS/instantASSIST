@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# download the clipboard link with youtube-dl
+# assist: download clipboard link with youtube-dl
 
 LINK="$(xclip -o -selection clipboard)"
 mkdir -p $(xdg-user-dir MUSIC) &>/dev/null

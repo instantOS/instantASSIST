@@ -1,5 +1,5 @@
 #!/bin/bash
 
-# choose random from a list of scrapers
+# assist: choose wallpaper random from a list of scrapers
 
 instantwallpaper random

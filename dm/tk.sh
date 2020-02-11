@@ -1,9 +1,12 @@
 #!/bin/bash
 
+# assist: change the keyboard layout
+
 LAYOUT=$(localectl list-x11-keymap-layouts | instantmenu -l 30 -p "select keyboard layout")
+
 if [ -n "$LAYOUT" ]; then
     echo "applying keyboard layout $LAYOUT"
-    setxkbmap -layout de
+    setxkbmap -layout "$LAYOUT"
     mkdir -p ~/instantos/
     echo "$LAYOUT" >~/instantos/keyboard
 else
