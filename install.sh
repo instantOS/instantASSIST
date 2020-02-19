@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 ###########################
 ## install instantASSIST ##
@@ -15,7 +15,7 @@ else
     mkdir -p ${ASSISTPREFIX}/opt
 fi
 
-source <(curl -Ls https://git.io/JerLG)
+source /usr/share/paperbash/import.sh
 pb install
 pb git
 
