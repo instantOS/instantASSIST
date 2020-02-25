@@ -1,0 +1,13 @@
+#!/usr/bin/env dash
+# the main script for starting and accessing my instantmenus
+cd /opt/instantos/menus/dm
+
+instdoc() {
+    for i in $(ls); do
+        if grep -q '# assist: ' ./$i; then
+            echo "${i%.*}: $(grep '# assist: ' ./$i | grep -o '[^:]*$')"
+        fi
+    done
+}
+
+instdoc | less
