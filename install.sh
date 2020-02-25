@@ -43,8 +43,14 @@ fi
 rm -rf instantASSIST
 gitclone instantOS/instantASSIST
 cd instantASSIST
-chmod +x instantassist
-mv instantassist ${ASSISTPREFIX}/usr/bin/instantassist
+
+instusrbin() {
+    chmod +x "$1"
+    mv instantassist ${ASSISTPREFIX}/usr/bin/"$1"
+}
+
+instusrbin instantassist
+instusrbin instantdoc
 
 rm -rf .git install.sh *.md
 
