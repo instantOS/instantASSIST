@@ -2,7 +2,13 @@
 
 # assist: choose a website to open in firefox
 
-LINK=$(cat /opt/instantos/menus/data/firefox | instantmenu -n)
+if ! [ -e ~/instantos/data/firefox ]; then
+    echo "building firefox cache"
+    mkdir -p ~/instantos/data
+    cat /opt/instantos/menus/dm/f.sh | grep '^[a-z])' | grep -o '[a-z]' >~/instantos/data/firefox
+fi
+
+LINK=$(cat ~/instantos/data/firefox | instantmenu -p "firefox" -n)
 case "$LINK" in
 s)
     firefox github.com
