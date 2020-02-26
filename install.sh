@@ -46,7 +46,7 @@ cd instantASSIST
 
 instusrbin() {
     chmod +x "$1"
-    mv instantassist ${ASSISTPREFIX}/usr/bin/"$1"
+    mv "$1" ${ASSISTPREFIX}/usr/bin/"$1"
 }
 
 instusrbin instantassist

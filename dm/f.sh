@@ -25,7 +25,10 @@ g)
 r)
     firefox reddit.com
     ;;
-f)
+c)
+    firefox $(xclip -o)
+    ;;
+*)
     firefox
     ;;
 esac
