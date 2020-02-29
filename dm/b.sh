@@ -2,10 +2,10 @@
 
 # assist: adjust display brightness
 
-if ! xbacklight &> /dev/null; then
+if ! xbacklight &>/dev/null; then
     [ -e /etc/udev/rules.d/backlight.rules ] || exit
-    BGPU="/sys/class/backlight/"$(cat /etc/udev/rules.d/backlight.rules | head -1 | \
-    grep -o 'KERNEL=="[^ ]*"' | grep -o '".*"' | grep -o '[^"]*')"/brightness"
+    BGPU="/sys/class/backlight/"$(cat /etc/udev/rules.d/backlight.rules | head -1 |
+        grep -o 'KERNEL=="[^ ]*"' | grep -o '".*"' | grep -o '[^"]*')"/brightness"
     MAXBRIGHT=$(cat ${BGPU%/*}/max_brightness)
     let "BRIGHTSTEP = $MAXBRIGHT / 20"
 fi
@@ -72,7 +72,12 @@ k
 q' | instantmenu -n)
 
     if [ "$CHOICE" -eq "$CHOICE" ] &>/dev/null; then
-        brightness -set "$CHOICE"
+        if [ "$CHOICE" = "0" ]; then
+            # 0 doesnt work for some reason
+            brightness -set 1
+        else
+            brightness -set "$CHOICE"
+        fi
         break
     fi
 
