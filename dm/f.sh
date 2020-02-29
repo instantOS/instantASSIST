@@ -8,7 +8,7 @@ if ! [ -e ~/instantos/data/firefox ]; then
     cat /opt/instantos/menus/dm/f.sh | grep '^[a-z])' | grep -o '[a-z]' >~/instantos/data/firefox
 fi
 
-LINK=$(cat ~/instantos/data/firefox | instantmenu -p "firefox" -n)
+LINK=$(instantmenu -p "firefox" -n < ~/instantos/data/firefox)
 case "$LINK" in
 s)
     firefox github.com

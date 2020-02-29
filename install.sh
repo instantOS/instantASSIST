@@ -11,8 +11,8 @@ if [ -z "$ASSISTPREFIX" ]; then
         exit 1
     fi
 else
-    mkdir -p ${ASSISTPREFIX}/usr/bin
-    mkdir -p ${ASSISTPREFIX}/opt
+    mkdir -p "${ASSISTPREFIX}"/usr/bin
+    mkdir -p "${ASSISTPREFIX}"/opt
 fi
 
 source /usr/share/paperbash/import.sh
@@ -22,20 +22,20 @@ pb git
 echo "installing instantASSIST"
 dom='https://github.com'
 
-if [ -e ${ASSISTPREFIX}/opt/instantos/menus/dm ]; then
-    rm -rf ${ASSISTPREFIX}/opt/instantos/menus/dm
+if [ -e "${ASSISTPREFIX}"/opt/instantos/menus/dm ]; then
+    rm -rf "${ASSISTPREFIX}"/opt/instantos/menus/dm
 fi
 
-rm -rf ${ASSISTPREFIX}/opt/instantos/menus
-mkdir -p ${ASSISTPREFIX}/opt/instantos/menus &>/dev/null
+rm -rf "${ASSISTPREFIX}"/opt/instantos/menus
+mkdir -p "${ASSISTPREFIX}"/opt/instantos/menus &>/dev/null
 mkdir /tmp/instantmenus &>/dev/null
 cd /tmp/instantmenus
 
-if ! [ -e ${ASSISTPREFIX}/opt/instantos/spotify-adblock.so ]; then
+if ! [ -e "${ASSISTPREFIX}"/opt/instantos/spotify-adblock.so ]; then
     git clone --depth=1 "$dom/abba23/spotify-adblock-linux.git"
     cd spotify-adblock-linux
     make
-    mv spotify-adblock.so ${ASSISTPREFIX}/opt/instantos/spotify-adblock.so
+    mv spotify-adblock.so "${ASSISTPREFIX}"/opt/instantos/spotify-adblock.so
     cd ..
     rm -rf spotify-adblock-linux
 fi
@@ -46,7 +46,7 @@ cd instantASSIST
 
 instusrbin() {
     chmod +x "$1"
-    mv "$1" ${ASSISTPREFIX}/usr/bin/"$1"
+    mv "$1" "${ASSISTPREFIX}"/usr/bin/"$1"
 }
 
 instusrbin instantassist
@@ -60,9 +60,9 @@ ls | grep -o '^.' | uniq >../apps
 cd ..
 chmod 755 dm/*.sh
 
-mv apps ${ASSISTPREFIX}/opt/instantos/menus/apps
-mv dm ${ASSISTPREFIX}/opt/instantos/menus/dm
-mv data ${ASSISTPREFIX}/opt/instantos/menus/data
+mv apps "${ASSISTPREFIX}"/opt/instantos/menus/apps
+mv dm "${ASSISTPREFIX}"/opt/instantos/menus/dm
+mv data "${ASSISTPREFIX}"/opt/instantos/menus/data
 
 cd ..
 rm -rf instantASSIST

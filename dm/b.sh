@@ -4,7 +4,7 @@
 
 if ! xbacklight &> /dev/null; then
     [ -e /etc/udev/rules.d/backlight.rules ] || exit
-    BGPU="/sys/class/backlight/"$(cat /etc/udev/rules.d/backlight.rules | head -1 | \
+    BGPU="/sys/class/backlight/"$(head -1 /etc/udev/rules.d/backlight.rules | \
     grep -o 'KERNEL=="[^ ]*"' | grep -o '".*"' | grep -o '[^"]*')"/brightness"
     MAXBRIGHT=$(cat ${BGPU%/*}/max_brightness)
     let "BRIGHTSTEP = $MAXBRIGHT / 20"
