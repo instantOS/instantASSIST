@@ -11,15 +11,18 @@ newlink() {
         sleep 0.1
         xdotool key Ctrl+c
         export LINK="$(xclip -o -selection clipboard)"
-        return 0
     else
         echo "no clipboardable link found"
-        return 1
+        exit
     fi
 }
 
-# empty clipboard?
-if ! grep -q '.....' <<<"$LINK"; then
+# link not valid?
+LINKLINES=$(wc -l <<<"$LINK")
+if grep -q '.....' <<<"$LINK" && [ "$LINKLINES" = "0" ]; then
+    echo "link appears to be valid"
+else
+    echo "link invalid, attemptiing to get new link"
     newlink
 fi
 
@@ -38,7 +41,7 @@ if [ -e ~/.cache/instantos/youtube.txt ]; then
     OLDLINK="$(cat ~/.cache/instantos/youtube.txt)"
     if [ "$LINK" = "$OLDLINK" ]; then
         echo "already downloaded"
-        newlink || exit
+        newlink
         cleanlink
         if [ "$LINK" = "$OLDLINK" ]; then
             echo "still on the same webpage"
