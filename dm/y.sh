@@ -19,7 +19,9 @@ newlink() {
 
 # link not valid?
 LINKLINES=$(wc -l <<<"$LINK")
-if grep -q '.....' <<<"$LINK" && [ "$LINKLINES" = "0" ]; then
+if grep -q '.....' <<<"$LINK" && {
+    [ "$LINKLINES" = "0" ] || [ "$LINKLINES" = "1" ]
+}; then
     echo "link appears to be valid"
 else
     echo "link invalid, attemptiing to get new link"
