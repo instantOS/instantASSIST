@@ -23,23 +23,28 @@ if ! grep -q '.....' <<<"$LINK"; then
     newlink
 fi
 
-# already downloaded?
-if [ -e ~/.cache/instantos/youtube.txt ]; then
-    if [ "$LINK" = "$(cat ~/.cache/instantos/youtube.txt)" ]; then
-        echo "already downloaded"
-        newlink || exit
-    fi
-else
-    mkdir -p ~/.cache/instantos
-fi
-
 # only download first video of playlist
 if grep -q 'music\.youtube\.com/watch?v=.*&list=.*' <<<"$LINK"; then
     LINK2=$LINK
     LINK=$(grep -o '.*music\.youtube\.com/watch?v=[^&]*' <<<"$LINK")
 fi
 
+# already downloaded?
+if [ -e ~/.cache/instantos/youtube.txt ]; then
+    OLDLINK="$(cat ~/.cache/instantos/youtube.txt)"
+    if [ "$LINK" = "$OLDLINK" ]; then
+        echo "already downloaded"
+        newlink || exit
+        if [ "$LINK" = "$OLDLINK" ]; then
+            echo "still on the same webpage"
+            exit
+        fi
+    fi
+else
+    mkdir -p ~/.cache/instantos
+fi
+
 mkdir -p $(xdg-user-dir MUSIC) &>/dev/null
 cd $(xdg-user-dir MUSIC)
 youtube-dl --playlist-items 1 -x --audio-format mp3 "$LINK" || exit
-echo "$LINK" >.cache/instantos/youtube.txt
+echo "$LINK" >~/.cache/instantos/youtube.txt
