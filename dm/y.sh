@@ -23,11 +23,15 @@ if ! grep -q '.....' <<<"$LINK"; then
     newlink
 fi
 
-# only download first video of playlist
-if grep -q 'music\.youtube\.com/watch?v=.*&list=.*' <<<"$LINK"; then
-    LINK2=$LINK
-    LINK=$(grep -o '.*music\.youtube\.com/watch?v=[^&]*' <<<"$LINK")
-fi
+cleanlink() {
+    # only download first video of playlist
+    if grep -q 'music\.youtube\.com/watch?v=.*&list=.*' <<<"$LINK"; then
+        LINK2=$LINK
+        LINK=$(grep -o '.*music\.youtube\.com/watch?v=[^&]*' <<<"$LINK")
+    fi
+}
+
+cleanlink
 
 # already downloaded?
 if [ -e ~/.cache/instantos/youtube.txt ]; then
@@ -35,6 +39,7 @@ if [ -e ~/.cache/instantos/youtube.txt ]; then
     if [ "$LINK" = "$OLDLINK" ]; then
         echo "already downloaded"
         newlink || exit
+        cleanlink
         if [ "$LINK" = "$OLDLINK" ]; then
             echo "still on the same webpage"
             exit
