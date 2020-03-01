@@ -8,7 +8,7 @@ if [ -z "$huid" ]; then
     exit
 fi
 
-echo $huid
+echo "$huid"
 
 xrid=$(xrandr | grep -Eo 'HDMI-[0-9]*' | instantmenu -l 10)
 if [ -z "$xrid" ]; then
@@ -16,4 +16,4 @@ if [ -z "$xrid" ]; then
     exit
 fi
 
-xinput map-to-output $huid $xrid
+xinput map-to-output "$huid" "$xrid"

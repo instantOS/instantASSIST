@@ -52,7 +52,7 @@ instusrbin() {
 instusrbin instantassist
 instusrbin instantdoc
 
-rm -rf .git install.sh *.md
+rm -rf .git install.sh ./*.md
 
 # build cache
 cd dm

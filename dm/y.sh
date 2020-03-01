@@ -31,7 +31,7 @@ fi
 cleanlink() {
     # only download first video of playlist
     if grep -q 'music\.youtube\.com/watch?v=.*&list=.*' <<<"$LINK"; then
-        LINK2=$LINK
+        LINK2="$LINK"
         LINK=$(grep -o '.*music\.youtube\.com/watch?v=[^&]*' <<<"$LINK")
     fi
 }

@@ -33,6 +33,6 @@ if [ -e /tmp/recordingpid ]; then
 fi
 
 slop=$(slop -f "%x %y %w %h %g %i") || exit 1
-read -r X Y W H G ID < <(echo $slop)
+read -r X Y W H G ID < <(echo "$slop")
 echo "r" >~/.status
 screencast
