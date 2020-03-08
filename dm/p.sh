@@ -8,6 +8,30 @@ pvolume() {
     pactl set-sink-volume $PSINK "$1"
 }
 
+# run from other place than instantassist
+if [ -n "$1" ]; then
+    YQUIT="TRUE"
+    case "$1" in
+    +)
+        pvolume +5%
+        ;;
+    -)
+        pvolume -5%
+        ;;
+    *)
+        if grep -q '^[0-9]*$'; then
+            pactl set-sink-mute $PSINK toggle
+        else
+            unset YQUIT
+        fi
+        ;;
+
+    esac
+
+    [ -n "$YQUIT" ] || exit
+
+fi
+
 while :; do
     CHOICE=$(echo '+
 -
