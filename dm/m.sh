@@ -2,7 +2,10 @@
 
 # assist: open spotify or toggle pause/play if it's already open
 
-command -v spotify &>/dev/null || exit 0
+command -v spotify &>/dev/null || {
+    notify-send '[instantASSIST] please install spotify first'
+    exit 0
+}
 
 if pgrep spotify &>/dev/null; then
     # pauses spotify player

@@ -7,9 +7,11 @@ if pgrep compton; then
     exit
 else
     if pgrep picom; then
+        notify-send '[instantASSIST] compositing disabled'
         pkill picom
         exit
     else
+        notify-send '[instantASSIST] compositing enabled'
         if command -v picom; then
             picom
         else

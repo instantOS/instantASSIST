@@ -56,5 +56,6 @@ fi
 
 mkdir -p $(xdg-user-dir MUSIC) &>/dev/null
 cd $(xdg-user-dir MUSIC)
+notify-send '[instantASSIST] downloading mp3'
 youtube-dl --playlist-items 1 -x --audio-format mp3 "$LINK" || exit
 echo "$LINK" >~/.cache/instantos/youtube.txt

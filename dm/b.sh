@@ -7,6 +7,7 @@ if [ -e /sys/class/backlight/ ] && [ "$(ls /sys/class/backlight | wc -l)" = "1" 
 	MAXBRIGHT=$(cat "$BGPU/max_brightness")
 	let "BRIGHTSTEP = $MAXBRIGHT / 20"
 else
+	notify-send '[instantASSIST] setting brightness is not supported on this device'
 	echo "system doesn't support brightness changing or you ran into a bug here"
 	exit 1
 fi
