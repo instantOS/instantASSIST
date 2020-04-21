@@ -10,4 +10,6 @@ if command -v "$WMSELECT" &>/dev/null; then
     echo "$WMSELECT" >/tmp/wmoverride
     sleep 0.2
     killwm
+else
+    notify-send "[instantASSIST] $WMSELECT is not installed"
 fi
