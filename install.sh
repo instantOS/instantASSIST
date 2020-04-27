@@ -59,9 +59,11 @@ cd dm
 ls | grep -o '^.' | uniq >../apps
 cd ..
 chmod 755 dm/*.sh
+chmod 755 ex/*.sh
 
 mv apps "${ASSISTPREFIX}"/opt/instantos/menus/apps
 mv dm "${ASSISTPREFIX}"/opt/instantos/menus/dm
+mv ex "${ASSISTPREFIX}"/opt/instantos/menus/ex
 mv data "${ASSISTPREFIX}"/opt/instantos/menus/data
 
 cd ..
