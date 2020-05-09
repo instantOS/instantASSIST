@@ -31,8 +31,18 @@ fi
 cleanlink() {
     # only download first video of playlist
     if grep -q 'music\.youtube\.com/watch?v=.*&list=.*' <<<"$LINK"; then
-        LINK2="$LINK"
-        LINK=$(grep -o '.*music\.youtube\.com/watch?v=[^&]*' <<<"$LINK")
+        CHOICE="$(echo 'download all videos
+download the current video' | instantmenu -c -l 2 -p 'link is a playlist')"
+
+        if [ -z "$CHOICE" ]; then
+            notify-send "download cancelled"
+            exit
+        fi
+
+        if echo "$CHOICE" | grep -q 'current'; then
+            LINK2="$LINK"
+            LINK=$(grep -o '.*music\.youtube\.com/watch?v=[^&]*' <<<"$LINK")
+        fi
     fi
 }
 
