@@ -1,6 +1,6 @@
 #!/usr/bin/env dash
 # the main script for starting and accessing my instantmenus
-PAPERAPP=$(cat /opt/instantos/menus/apps | instantmenu -n -h 32 -F)
+PAPERAPP=$(cat /opt/instantos/menus/apps | instantmenu -p instantASSITS -n -h 32 -F)
 [ -z "$PAPERAPP" ] && exit
 
 TEMP=$(ls /opt/instantos/menus/dm/$PAPERAPP*.sh | sed 's/^.*\///g' | grep -o '^[^\.]*' | grep "^$PAPERAPP" | grep -o '.$' | uniq)
