@@ -13,7 +13,7 @@ else
     else
         notify-send '[instantASSIST] compositing enabled'
         if command -v picom; then
-            picom
+            picom --experimental-backends
         else
             compton
         fi
