@@ -12,8 +12,12 @@ else
         exit
     else
         notify-send '[instantASSIST] compositing enabled'
-        if command -v picom; then
-            picom --experimental-backends
+        if command -v picom &>/dev/null; then
+            if iconf -i blur; then
+                picom --experimental-backends &
+            else
+                picom &
+            fi
         else
             compton
         fi
