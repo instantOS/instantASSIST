@@ -9,9 +9,9 @@ PICTUREDIR="$(xdg-user-dir PICTURES)"
 import -window root -crop "$G" $PICTUREDIR/$SCROTNAME.png
 notify-send '[instantASSIST] uploading screenshot'
 if ping -c 1 archlinux.org; then
-    IMGURNAME=$(imgur.sh $PICTUREDIR/$SCROTNAME.png)
-    notify-send "copied imgur link: $IMGURNAME"
-    echo "$IMGURNAME" | xclip -selection c
+    IMGURLINK="$(imgur.sh $PICTUREDIR/$SCROTNAME.png | head -1)"
+    notify-send "copied imgur link: $IMGURLINK"
+    echo "$IMGURLINK" | xclip -selection c
 else
     notify-send 'upload failed'
 fi
