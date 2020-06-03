@@ -2,7 +2,7 @@
 
 # assist: quickly swap monitors
 
-MONITORS=$(xrandr | grep -Eo 'HDMI-[0-9]*')
+MONITORS=$(xrandr | grep ' connected' | grep -o '^[^ ]*')
 # as of now only supports dual monitor setups
 wc -l <<<"$MONITORS" | grep -q '2' || exit
 
