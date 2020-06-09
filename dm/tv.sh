@@ -2,13 +2,13 @@
 
 # assist: set resolution to 1920x1080 in a virtual machine
 
-if ! xrandr | grep -iq 'virtual'; then
-    notify-send "this only works on a virtual machine"
-fi
+# this was copied from stackoverflow ;)
 
 # First we need to get the modeline string for xrandr
 # Luckily, the tool `gtf` will help you calculate it.
 # e.g. `gtf <hRes> <vRes> <refreshRate>`:
+VDISPLAY="$(xrandr | grep ' connected' | grep -o '^[^ ]*' | head -1)"
+
 gtf 1920 1080 60
 
 # In this case, the horizontal resolution is 1920px the
@@ -29,7 +29,7 @@ xrandr --newmode "1920x1080_60.00" 172.80 1920 2040 2248 2576 1080 1081 1084 111
 
 # Then all you have to do is to add the new mode to the
 # display you want to apply, like this:
-xrandr --addmode Virtual-1 "1920x1080_60.00"
+xrandr --addmode "$VDISPLAY" "1920x1080_60.00"
 
 # VGA1 is the display name, it might differ for you.
 # Run `xrandr` without any parameters to be sure.
@@ -38,7 +38,7 @@ xrandr --addmode Virtual-1 "1920x1080_60.00"
 
 # It should add the new mode to the display & apply it.
 # If it doesn't apply automatically, force it with:
-xrandr --output Virtual-1 --mode "1920x1080_60.00"
+xrandr --output "$VDISPLAY" --mode "1920x1080_60.00"
 
 # That's it... Enjoy the new awesome high-res display!
 
