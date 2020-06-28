@@ -11,7 +11,7 @@ screencast() {
         -f alsa -i default \
         -r 30 \
         -c:v h264 -c:a flac \
-        "$HOME/paperbenni/recordings/creencast-$(date '+%y%m%d-%H%M-%S').mkv" &
+        "$(xdg-user-dir VIDEOS)/screencast-$(date '+%y%m%d-%H%M-%S').mkv" &
     echo $! >/tmp/recordingpid
 }
 
