@@ -3,6 +3,8 @@
 # assist: set up screen recordings with ffmpeg, allowing you to choose an area
 
 screencast() {
+    DATEFILE="screencast-$(date '+%y%m%d-%H%M-%S')"
+    OUTPUTFILE=${DATEFILE:$1}
     ffmpeg -y \
         -f x11grab \
         -framerate 24 \
@@ -11,7 +13,7 @@ screencast() {
         -f alsa -i default \
         -r 30 \
         -c:v h264 -c:a flac \
-        "$(xdg-user-dir VIDEOS)/screencast-$(date '+%y%m%d-%H%M-%S').mkv" &
+        "$(xdg-user-dir VIDEOS)/$OUTPUTFILE.mkv" &
     echo $! >/tmp/recordingpid
 }
 
@@ -35,4 +37,4 @@ fi
 slop=$(slop -f "%x %y %w %h %g %i") || exit 1
 read -r X Y W H G ID < <(echo "$slop")
 echo "r" >~/.status
-screencast
+screencast "$@"
