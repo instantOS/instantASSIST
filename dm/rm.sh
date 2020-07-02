@@ -13,6 +13,7 @@ if [ -e /tmp/instantassistvideoname ]; then
         rm /tmp/instantassistvideoname
     else
         notify-send "recording failed"
+        rm /tmp/instantassistvideoname
     fi
     exit
 fi
