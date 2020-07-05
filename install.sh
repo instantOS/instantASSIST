@@ -34,6 +34,7 @@ cd /tmp/instantmenus
 if ! [ -e "${ASSISTPREFIX}"/opt/instantos/spotify-adblock.so ]; then
     git clone --depth=1 "$dom/abba23/spotify-adblock-linux.git"
     cd spotify-adblock-linux
+    sed -i '/\};/i    "audio4-fa.spotifycdn.com", //audio' whitelist.h
     make
     mv spotify-adblock.so "${ASSISTPREFIX}"/opt/instantos/spotify-adblock.so
     cd ..
