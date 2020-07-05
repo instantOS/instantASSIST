@@ -2,6 +2,7 @@
 
 # assist: set up screen recordings with ffmpeg, allowing you to choose an area
 
+DATEFILE="screencast-$(date '+%y%m%d-%H%M-%S')"
 screencast() {
     ffmpeg -y \
         -f x11grab \
@@ -11,7 +12,7 @@ screencast() {
         -f alsa -i default \
         -r 30 \
         -c:v h264 -c:a flac \
-        "$HOME/paperbenni/recordings/creencast-$(date '+%y%m%d-%H%M-%S').mkv" &
+        "$(xdg-user-dir VIDEOS)/$1.mkv" &
     echo $! >/tmp/recordingpid
 }
 
@@ -35,4 +36,5 @@ fi
 slop=$(slop -f "%x %y %w %h %g %i") || exit 1
 read -r X Y W H G ID < <(echo "$slop")
 echo "r" >~/.status
-screencast
+
+screencast "${1:-$DATEFILE}"
