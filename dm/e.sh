@@ -39,7 +39,8 @@ fi
 # pick emojis using 
 cd
 
-EMOJI="$(cat .cache/emoji/list.txt | instantmenu -l 20 -p 'emoji picker' | grep -o ' [^a-zA-Z0-9]*$' | grep -o '[^ ]*')"
+EMOJI="$(cat .cache/emoji/list.txt | instantmenu -b -l 20 -p 'emoji picker' | grep -o ' [^a-zA-Z0-9]*$' | grep -o '[^ ]*')"
+
 if [ -z "$EMOJI" ]; then
     exit
 fi
