@@ -8,7 +8,7 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7e25496a026149f58a014b4c4e8538c8)](https://app.codacy.com/gh/instantOS/instantASSIST?utm_source=github.com&utm_medium=referral&utm_content=instantOS/instantASSIST&utm_campaign=Badge_Grade_Settings)
 
-instantASSIST is a handy menu to access lots of features of isntantOS
+instantASSIST is a handy menu to access lots of features of instantOS
 
 ## Usage
 
