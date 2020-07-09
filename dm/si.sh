@@ -6,10 +6,10 @@ slop=$(slop -f "%g") || exit 1
 read -r G < <(echo "$slop")
 SCROTNAME="$(date '+%Y%m%d%H%M%S')"
 PICTUREDIR="$(xdg-user-dir PICTURES)"
-import -window root -crop "$G" $PICTUREDIR/$SCROTNAME.png
+import -window root -crop "$G" "$PICTUREDIR/$SCROTNAME".png
 notify-send '[instantASSIST] uploading screenshot'
 if ping -c 1 archlinux.org; then
-    IMGURLINK="$(imgur.sh $PICTUREDIR/$SCROTNAME.png | head -1)"
+    IMGURLINK="$(imgur.sh "$PICTUREDIR/$SCROTNAME".png | head -1)"
     notify-send "copied imgur link: $IMGURLINK"
     echo "$IMGURLINK" | xclip -selection c
 else

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# assist: take a screenshot of a selected area
+# assist: take a screenshot of a selected area into the clipboard
 
 slop=$(slop -f "%g") || exit 1
 read -r G < <(echo $slop)

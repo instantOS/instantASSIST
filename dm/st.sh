@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# assist: take a screenshot of a selected area after 5 seconds
+# assist: screenshot a selected area after 5 seconds
 
 slop=$(slop -f "%g") || exit 1
 read -r G < <(echo "$slop")
