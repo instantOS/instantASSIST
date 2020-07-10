@@ -1,5 +1,6 @@
 #!/usr/bin/env dash
-# the main script for starting and accessing my instantmenus
+# main menu to access instantASSIST
+
 PAPERAPP=$(cat /opt/instantos/menus/apps | instantmenu -p instantASSIST -n -h 32 -F)
 [ -z "$PAPERAPP" ] && exit
 
@@ -11,7 +12,7 @@ exescript() {
         bash /opt/instantos/menus/dm/$1.sh && exit
 }
 
-if [ -n "$TEMP" ] && [ $(echo "$TEMP" | wc -l) -gt "1" ]; then
+if [ -n "$TEMP" ] && [ "$(echo "$TEMP" | wc -l)" -gt "1" ]; then
     if [ -e /opt/instantos/menus/dm/$PAPERAPP$PAPERAPP.sh ]; then
         APP2=$(echo "$TEMP" | instantmenu -n -h 32 -F)
     else
@@ -19,12 +20,12 @@ if [ -n "$TEMP" ] && [ $(echo "$TEMP" | wc -l) -gt "1" ]; then
     fi
 
     if [ -n "$APP2" ]; then
-        exescript $PAPERAPP$APP2
+        exescript "$PAPERAPP$APP2"
     else
-        exescript $PAPERAPP$PAPERAPP
-        exescript $PAPERAPP
+        exescript "$PAPERAPP$PAPERAPP"
+        exescript "$PAPERAPP"
     fi
 else
-    exescript $PAPERAPP$PAPERAPP
-    exescript $PAPERAPP
+    exescript "$PAPERAPP$PAPERAPP"
+    exescript "$PAPERAPP"
 fi
