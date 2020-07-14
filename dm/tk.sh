@@ -1,8 +1,24 @@
 #!/bin/bash
 
 # assist: change the keyboard layout
+if [ -n "$1" ]; then
+    sidebar() {
+        instantmenu -l 2000 -w 400 -i -h 60 -x 100000 -y 0 -bw 4 -H -q "keyboard layout"
+    }
+else
+    sidebar() {
+        instantmenu -l 30 -p "select keyboard layout"
+    }
+fi
 
-LAYOUT=$(localectl list-x11-keymap-layouts | instantmenu -l 30 -p "select keyboard layout")
+LAYOUTLIST="$(localectl list-x11-keymap-layouts)"
+
+if [ -n "$1" ]; then
+    LAYOUTLIST=">>h Keyboard layout selector
+$LAYOUTLIST"
+fi
+
+LAYOUT=$(echo "$LAYOUTLIST" | sidebar)
 
 if [ -n "$LAYOUT" ]; then
     echo "applying keyboard layout $LAYOUT"
