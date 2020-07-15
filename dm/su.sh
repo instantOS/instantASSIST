@@ -10,8 +10,13 @@ import -window root -crop "$G" $PICTUREDIR/$SCROTNAME.png
 notify-send '[instantASSIST] uploading screenshot'
 
 filecoffee() {
-    curl --location --request POST 'https://file.coffee/api/v1/upload' \
-        --form "file=@$1" | grep -o '"https://.*"' | grep -o '[^"]*'
+    if iconf coffeetoken; then
+        curl --location --request POST "https://file.coffee/api/v1/upload?key=$(iconf coffeetoken)" \
+            --form "file=@$1" | grep -o '"https://.*"' | grep -o '[^"]*'
+    else
+        curl --location --request POST 'https://file.coffee/api/v1/upload' \
+            --form "file=@$1" | grep -o '"https://.*"' | grep -o '[^"]*'
+    fi
 }
 
 if ping -c 1 archlinux.org; then
