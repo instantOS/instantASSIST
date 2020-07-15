@@ -12,7 +12,7 @@ notify-send '[instantASSIST] uploading screenshot'
 filecoffee() {
     if iconf coffeetoken; then
         curl --location --request POST "https://file.coffee/api/v1/upload?key=$(iconf coffeetoken)" \
-            --form "file=@$1" | grep -o '"https://.*"' | grep -o '[^"]*'
+            --form "file=@$1" | grep -o '"https://.*"' | grep -o '[^"]*' | grep -o 'https://.*'
     else
         curl --location --request POST 'https://file.coffee/api/v1/upload' \
             --form "file=@$1" | grep -o '"https://.*"' | grep -o '[^"]*'
@@ -20,7 +20,7 @@ filecoffee() {
 }
 
 if ping -c 1 archlinux.org; then
-    IMGURLINK="$(filecoffee $PICTUREDIR/$SCROTNAME.png)"
+    IMGURLINK="$(filecoffee $PICTUREDIR/$SCROTNAME.png | grep -o 'https://.*')"
     notify-send "copied filecoffee link: $IMGURLINK"
     echo "$IMGURLINK" | xclip -selection c
     echo "$IMGURLINK" >>~/screenshots
