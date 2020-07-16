@@ -1,5 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
-# assist: run this if your win + space instantmenu stops working
-notify-send '[instantASSIST] applied dmenu workaround'
-rm ~/.cache/instantmenu_run
+# assist: set mouse sensitivity
+
+CURRENTSPEED="$(iconf mousespeed)"
+PRESPEED=$(echo "($CURRENTSPEED + 1) * 50" | bc -l | grep -o '^[^.]*')
+islide -s "$PRESPEED" -c "instantmouse m " -p "mouse sensitivity"
+iconf mousespeed "$(instantmouse l)"
+
