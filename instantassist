@@ -1,10 +1,11 @@
 #!/usr/bin/env dash
 # main menu to access instantASSIST
 
-PAPERAPP=$(cat /opt/instantos/menus/apps | instantmenu -p instantASSIST -n -h 32 -F)
+PAPERAPP=$(cat /opt/instantos/menus/apps | instantmenu -i -p instantASSIST -n -h 32 -F)
 [ -z "$PAPERAPP" ] && exit
 
-TEMP=$(ls /opt/instantos/menus/dm/$PAPERAPP*.sh | sed 's/^.*\///g' | grep -o '^[^\.]*' | grep "^$PAPERAPP" | grep -o '.$' | uniq)
+TEMP=$(ls /opt/instantos/menus/dm/$PAPERAPP*.sh | sed 's/^.*\///g' |
+    grep -o '^[^\.]*' | grep "^$PAPERAPP" | grep -o '.$' | uniq)
 
 exescript() {
     [ -e /opt/instantos/menus/dm/$1.sh ] &&
@@ -14,9 +15,9 @@ exescript() {
 
 if [ -n "$TEMP" ] && [ "$(echo "$TEMP" | wc -l)" -gt "1" ]; then
     if [ -e /opt/instantos/menus/dm/$PAPERAPP$PAPERAPP.sh ]; then
-        APP2=$(echo "$TEMP" | instantmenu -n -h 32 -F)
+        APP2=$(echo "$TEMP" | instantmenu -i -n -h 32 -F)
     else
-        APP2=$(echo "$TEMP" | instantmenu -n -h 32 -F)
+        APP2=$(echo "$TEMP" | instantmenu -i -n -h 32 -F)
     fi
 
     if [ -n "$APP2" ]; then
