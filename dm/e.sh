@@ -36,7 +36,7 @@ if ! [ -e .cache/emoji/list.txt ]; then
 
 fi
 
-# pick emojis using 
+# pick emojis using
 cd
 
 EMOJI="$(cat .cache/emoji/list.txt | instantmenu -b -l 20 -p 'emoji picker' | grep -o ' [^a-zA-Z0-9]*$' | grep -o '[^ ]*')"

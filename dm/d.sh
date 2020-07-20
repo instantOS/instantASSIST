@@ -12,4 +12,4 @@ MONITOR=$(instantmenu -p 'choose left monitor' <<<"$MONITORS")
 OTHERMONITOR=$(grep -v "$MONITOR" <<<"$MONITORS")
 
 xrandr --output "$MONITOR" --left-of "$OTHERMONITOR"
-echo xrandr --output "$MONITOR" --left-of "$OTHERMONITOR" > ~/instantos/monitor.sh
+echo xrandr --output "$MONITOR" --left-of "$OTHERMONITOR" >~/instantos/monitor.sh
