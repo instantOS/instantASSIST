@@ -3,11 +3,12 @@
 # assist: adjust audio volume
 
 pvolume() {
-    pactl amixer set 'Master' "$1"
+    amixer set 'Master' "$1"
 }
 
 if [ "$1" -eq "$1" ] &>/dev/null; then
-    pvolume "$CHOICE"
+    pvolume "${1}%"
+    exit
 fi
 
 case "$1" in
