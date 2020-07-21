@@ -4,6 +4,12 @@
 ## install instantASSIST from a local copy ##
 #############################################
 
+whoami | grep -q '^root$' || exit
+
+rm -rf /tmp/assistinstall
+cp -r ./* /tmp/assistinstall
+cd /tmp/assistinstall || exit
+
 git pull
 
 [ -e "${ASSISTPREFIX}"/usr/bin ] || mkdir -p "${ASSISTPREFIX}"/usr/bin
