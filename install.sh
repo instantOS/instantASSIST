@@ -45,7 +45,7 @@ cp instantassist "${ASSISTPREFIX}"/usr/bin/"$1"
 
 rm -rf .git install.sh ./*.md
 
-chmod 755 assists/*.sh
+chmod 755 assists/*/*.sh
 chmod 755 utils/*.sh
 
 installdir() {
