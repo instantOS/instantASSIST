@@ -17,7 +17,7 @@ fi
 bash cache.sh
 
 if ! [ -e "${ASSISTPREFIX}"/usr/share/instantassist/spotify-adblock.so ]; then
-    git clone --depth=1 "$dom/abba23/spotify-adblock-linux.git"
+    git clone --depth=1 "https://github.com/abba23/spotify-adblock-linux.git"
     cd spotify-adblock-linux || exit 1
     sed -i '/\};/i    "audio4-fa.spotifycdn.com", //audio' whitelist.h
     make
@@ -26,13 +26,8 @@ if ! [ -e "${ASSISTPREFIX}"/usr/share/instantassist/spotify-adblock.so ]; then
     rm -rf spotify-adblock-linux
 fi
 
-instusrbin() {
-    chmod 755 "$1"
-    mv "$1" "${ASSISTPREFIX}"/usr/bin/"$1"
-}
-
 chmod 755 instantassist
-mv instantassist "${ASSISTPREFIX}"/usr/bin/"$1"
+cp instantassist "${ASSISTPREFIX}"/usr/bin/"$1"
 
 rm -rf .git install.sh ./*.md
 
