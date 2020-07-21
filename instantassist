@@ -2,12 +2,12 @@
 
 # main menu to access instantASSIST
 
-ASSIST=$(cat /usr/share/instantassist/cache/cache | instantmenu -i -p instantASSIST -n -h 32 -F -ct | grep '^.')
+ASSIST=$(cat /usr/share/instantassist/cache/cache | instantmenu -i -p instantASSIST -n -h 32 -F -ct | grep -o '^.')
 
 [ -z "$ASSIST" ] && exit
 
 if [ -d /usr/share/instantassist/assists/"$ASSIST" ]; then
-    ASSIST2="$(cat /usr/share/instantassist/cache/"$ASSIST" | instantmenu -i -p instantASSIST -n -h 32 -F -ct | grep '^.')"
+    ASSIST2="$(cat /usr/share/instantassist/cache/"$ASSIST" | instantmenu -i -p instantASSIST -n -h 32 -F -ct | grep -o '^.')"
     [ -z "$ASSIST2" ] && exit
     SCRIPTPATH=/usr/share/instantassist/assists/"$ASSIST/$ASSIST2"
 else
@@ -18,4 +18,4 @@ else
     SCRIPTPATH=/usr/share/instantassist/assists/"$ASSIST"
 fi
 
-"$SCRIPTPATH"
+"${SCRIPTPATH}.sh"

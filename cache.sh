@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# this generates cahe files for instantASSIST
+# this generates cache files for instantASSIST
 
 rm -rf cache
 mkdir cache
@@ -8,7 +8,7 @@ HELP="$(realpath .)/cache/help"
 CACHE="$(realpath .)/cache/cache"
 CDIR="$(realpath .)/cache"
 
-cd dm
+cd assists || exit 1
 
 # generate helpfile
 

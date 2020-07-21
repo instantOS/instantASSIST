@@ -2,7 +2,7 @@
 
 # assist: same as rr but convert to mp4 afterwards
 if [ -e /tmp/instantassistvideoname ]; then
-    pgrep ffmpeg && /usr/share/instantassist/menus/dm/rr.sh
+    pgrep ffmpeg && /usr/share/instantassist/assists/r/r.sh
     DATEFILE="$(cat /tmp/instantassistvideoname)"
     cd "$(xdg-user-dir VIDEOS)" || exit
     if [ -e "$DATEFILE.mkv" ]; then
@@ -21,4 +21,4 @@ fi
 DATEFILE="screencast-$(date '+%y%m%d-%H%M-%S')"
 echo "$DATEFILE" >/tmp/instantassistvideoname
 
-/usr/share/instantassist/menus/dm/rr.sh "$DATEFILE"
+/usr/share/instantassist/assists/r/r.sh "$DATEFILE"

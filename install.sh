@@ -26,6 +26,8 @@ if [ -e "${ASSISTPREFIX}"/usr/share/instantassist ]; then
     rm -rf "${ASSISTPREFIX}"/usr/share/instantassist
 fi
 
+mkdir -p "${ASSISTPREFIX}"/usr/share/instantassist
+
 ./cache.sh
 
 if ! [ -e "${ASSISTPREFIX}"/usr/share/instantassist/spotify-adblock.so ]; then
@@ -33,7 +35,7 @@ if ! [ -e "${ASSISTPREFIX}"/usr/share/instantassist/spotify-adblock.so ]; then
     cd spotify-adblock-linux || exit 1
     sed -i '/\};/i    "audio4-fa.spotifycdn.com", //audio' whitelist.h
     make
-    mv spotify-adblock.so "${ASSISTPREFIX}"/usr/share/instantassist/spotify-adblock.so
+    mv spotify-adblock.so "${ASSISTPREFIX}"/usr/share/instantassist/ || exit 1
     cd ..
     rm -rf spotify-adblock-linux
 fi
@@ -46,7 +48,13 @@ rm -rf .git install.sh ./*.md
 chmod 755 assists/*.sh
 chmod 755 utils/*.sh
 
-cp -r cache "${ASSISTPREFIX}"/usr/share/instantassist/
-cp -r assists "${ASSISTPREFIX}"/usr/share/instantassist/
-cp -r data "${ASSISTPREFIX}"/usr/share/instantassist/
-cp -r utils "${ASSISTPREFIX}"/usr/share/instantassist/
+installdir() {
+    mkdir -p "${ASSISTPREFIX}"/usr/share/instantassist/"$1"
+    cp -r "$1"/* "${ASSISTPREFIX}"/usr/share/instantassist/"$1"/
+}
+
+installdir cache
+installdir assists
+installdir data
+installdir utils
+
