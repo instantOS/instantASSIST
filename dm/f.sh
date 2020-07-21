@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# assist: choose a website to open in firefox
+# assist: firefox
 
 if ! [ -e ~/instantos/data/firefox ]; then
     echo "building firefox cache"
@@ -37,6 +37,9 @@ r)
     ;;
 c)
     firefox $(xclip -o)
+    ;;
+t)
+    firefox trello.com
     ;;
 f)
     firefox

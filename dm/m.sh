@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# assist: open spotify or toggle pause/play if it's already open
+# assist: spotifyctl
 
 command -v spotify &>/dev/null || {
     notify-send '[instantASSIST] please install spotify first'

@@ -1,4 +1,5 @@
 #!/bin/sh
 
-# list avaliable instantassist shortcuts and their functions
+# assist: help
+
 st -e instantdoc

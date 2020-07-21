@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# assist: toggle compositor
+# assist: toggle compositing
 
 if pgrep picom; then
     notify-send '[instantASSIST] compositing disabled'
