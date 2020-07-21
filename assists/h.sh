@@ -2,4 +2,4 @@
 
 # assist: help
 
-st -e instantdoc
+st -e dash -c 'less --mouse --wheel-lines=3 /usr/share/instantassist/cache/help'
