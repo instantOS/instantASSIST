@@ -5,7 +5,7 @@
 if ! [ -e ~/instantos/data/firefox ]; then
     echo "building firefox cache"
     mkdir -p ~/instantos/data
-    cat /opt/instantos/menus/dm/f.sh | grep '^[a-z])' | grep -o '[a-z]' >~/instantos/data/firefox
+    cat /usr/share/instantassist/menus/dm/f.sh | grep '^[a-z])' | grep -o '[a-z]' >~/instantos/data/firefox
 fi
 
 LINK=$(instantmenu -p "firefox" -n <~/instantos/data/firefox)

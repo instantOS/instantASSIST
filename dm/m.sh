@@ -12,5 +12,5 @@ if pgrep spotify &>/dev/null; then
     dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
     exit
 else
-    LD_PRELOAD="/opt/instantos/spotify-adblock.so" spotify
+    LD_PRELOAD="/usr/share/instantassist/spotify-adblock.so" spotify
 fi

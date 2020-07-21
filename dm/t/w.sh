@@ -1,5 +1,5 @@
 #!/bin/bash
-WMSELECT="$(cat /opt/instantos/menus/data/wm | instantmenu -c -l 10 -p 'select window manager')"
+WMSELECT="$(cat /usr/share/instantassist/menus/data/wm | instantmenu -c -l 10 -p 'select window manager')"
 
 if [ -z "$WMSELECT" ]; then
     exit

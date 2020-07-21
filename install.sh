@@ -22,21 +22,21 @@ pb git
 echo "installing instantASSIST"
 dom='https://github.com'
 
-if [ -e "${ASSISTPREFIX}"/opt/instantos/menus/dm ]; then
-    rm -rf "${ASSISTPREFIX}"/opt/instantos/menus/dm
+if [ -e "${ASSISTPREFIX}"/usr/share/instantassist/menus/dm ]; then
+    rm -rf "${ASSISTPREFIX}"/usr/share/instantassist/menus/dm
 fi
 
-rm -rf "${ASSISTPREFIX}"/opt/instantos/menus
-mkdir -p "${ASSISTPREFIX}"/opt/instantos/menus &>/dev/null
+rm -rf "${ASSISTPREFIX}"/usr/share/instantassist/menus
+mkdir -p "${ASSISTPREFIX}"/usr/share/instantassist/menus &>/dev/null
 mkdir /tmp/instantmenus &>/dev/null
 cd /tmp/instantmenus
 
-if ! [ -e "${ASSISTPREFIX}"/opt/instantos/spotify-adblock.so ]; then
+if ! [ -e "${ASSISTPREFIX}"/usr/share/instantassist/spotify-adblock.so ]; then
     git clone --depth=1 "$dom/abba23/spotify-adblock-linux.git"
     cd spotify-adblock-linux
     sed -i '/\};/i    "audio4-fa.spotifycdn.com", //audio' whitelist.h
     make
-    mv spotify-adblock.so "${ASSISTPREFIX}"/opt/instantos/spotify-adblock.so
+    mv spotify-adblock.so "${ASSISTPREFIX}"/usr/share/instantassist/spotify-adblock.so
     cd ..
     rm -rf spotify-adblock-linux
 fi
@@ -62,10 +62,10 @@ cd ..
 chmod 755 dm/*.sh
 chmod 755 ex/*.sh
 
-mv apps "${ASSISTPREFIX}"/opt/instantos/menus/apps
-mv dm "${ASSISTPREFIX}"/opt/instantos/menus/dm
-mv ex "${ASSISTPREFIX}"/opt/instantos/menus/ex
-mv data "${ASSISTPREFIX}"/opt/instantos/menus/data
+mv apps "${ASSISTPREFIX}"/usr/share/instantassist/menus/apps
+mv dm "${ASSISTPREFIX}"/usr/share/instantassist/menus/dm
+mv ex "${ASSISTPREFIX}"/usr/share/instantassist/menus/ex
+mv data "${ASSISTPREFIX}"/usr/share/instantassist/menus/data
 
 cd ..
 rm -rf instantASSIST
