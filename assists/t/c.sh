@@ -2,7 +2,7 @@
 
 # assist: invert screen colors
 
-command -v xcalib || exit 1
+instantinstall xcalib || exit
 
 if [ -e /tmp/.xinvert ]; then
     xcalib -c

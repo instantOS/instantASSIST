@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# assist: quickly swap monitors
+# assist: swap monitors
 
 MONITORS=$(xrandr | grep ' connected' | grep -o '^[^ ]*')
 # as of now only supports dual monitor setups

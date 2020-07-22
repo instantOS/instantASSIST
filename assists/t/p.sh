@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# assist: run this if your pulseaudio hotkeys stop working
+# assist: restart pulseaudio
 
 pkill pulseaudio
 sleep 0.5
-pulseaudio --start
+pulseaudio --start &
 notify-send '[instantASSIST] pulseaudio has been restarted'
