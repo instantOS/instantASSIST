@@ -39,6 +39,7 @@ mkdir -p "${ASSISTPREFIX}"/usr/share/instantassist
 mkdir -p "${ASSISTPREFIX}"/usr/bin
 
 ./cache.sh
+chmod -R 755 cache
 
 if ! [ -e "${ASSISTPREFIX}"/usr/share/instantassist/spotify-adblock.so ]; then
     pushd .
