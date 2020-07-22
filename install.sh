@@ -4,7 +4,9 @@
 ## install instantASSIST from a local copy ##
 #############################################
 
-whoami | grep -q '^root$' || exit
+if [ -z "${ASSISTPREFIX}" ]; then
+    whoami | grep -q '^root$' || exit
+fi
 
 rm -rf /tmp/assistinstall
 mkdir /tmp/assistinstall
@@ -58,3 +60,5 @@ installdir cache
 installdir assists
 installdir data
 installdir utils
+
+[ -z "${ASSISTPREFIX}" ] && rm -rf /tmp/assistinstall
