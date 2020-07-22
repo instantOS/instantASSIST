@@ -4,6 +4,8 @@
 ## install instantASSIST from a local copy ##
 #############################################
 
+pushd .
+
 die() {
     echo "exiting: $1"
     exit 1
@@ -82,3 +84,5 @@ installdir data
 installdir utils
 
 [ -z "${ASSISTPREFIX}" ] && rm -rf /tmp/assistinstall
+
+popd
