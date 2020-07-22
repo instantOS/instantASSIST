@@ -34,6 +34,7 @@ if [ -e "${ASSISTPREFIX}"/usr/share/instantassist ]; then
 fi
 
 mkdir -p "${ASSISTPREFIX}"/usr/share/instantassist
+mkdir -p "${ASSISTPREFIX}"/usr/bin
 
 ./cache.sh
 
