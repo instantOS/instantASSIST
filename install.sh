@@ -51,8 +51,9 @@ if ! [ -e "${ASSISTPREFIX}"/usr/share/instantassist/spotify-adblock.so ]; then
     popd
 fi
 
+echo "installinst instantassist binary"
 chmod 755 instantassist
-cp instantassist "${ASSISTPREFIX}"/usr/bin/"$1"
+cp instantassist "${ASSISTPREFIX}"/usr/bin/instantassist
 
 rm -rf .git install.sh ./*.md
 
