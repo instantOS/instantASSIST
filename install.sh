@@ -66,11 +66,12 @@ rm -rf ./.git
 rm install.sh
 rm ./*.md
 
-chmod 755 assists/*/*.sh
-chmod 755 assists/*.sh
-chmod 755 utils/*.sh
+chmod 755 ./assists/*/*.sh
+chmod 755 ./assists/*.sh
+chmod 755 ./utils/*.sh
 
 installdir() {
+    echo "installing dir $1"
     mkdir -p "${ASSISTPREFIX}"/usr/share/instantassist/"$1"
     cp -r "$1"/* "${ASSISTPREFIX}"/usr/share/instantassist/"$1"/
 }
