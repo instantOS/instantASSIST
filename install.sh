@@ -4,8 +4,13 @@
 ## install instantASSIST from a local copy ##
 #############################################
 
+die() {
+    echo "exiting: $1"
+    exit 1
+}
+
 if [ -z "${ASSISTPREFIX}" ]; then
-    whoami | grep -q '^root$' || exit
+    whoami | grep -q '^root$' || die "not running as root"
 fi
 
 rm -rf /tmp/assistinstall
@@ -13,10 +18,10 @@ mkdir /tmp/assistinstall
 
 {
     [ -e assists ] && [ -e instantassist.desktop ]
-} || exit
+} || die "not running from repo"
 
 cp -r ./* /tmp/assistinstall
-cd /tmp/assistinstall || exit
+cd /tmp/assistinstall || die "failed to create tmp file"
 
 git pull
 
@@ -34,10 +39,10 @@ mkdir -p "${ASSISTPREFIX}"/usr/share/instantassist
 
 if ! [ -e "${ASSISTPREFIX}"/usr/share/instantassist/spotify-adblock.so ]; then
     git clone --depth=1 "https://github.com/abba23/spotify-adblock-linux.git"
-    cd spotify-adblock-linux || exit 1
+    cd spotify-adblock-linux || die "can't clone spotfiy"
     sed -i '/\};/i    "audio4-fa.spotifycdn.com", //audio' whitelist.h
     make
-    mv spotify-adblock.so "${ASSISTPREFIX}"/usr/share/instantassist/ || exit 1
+    mv spotify-adblock.so "${ASSISTPREFIX}"/usr/share/instantassist/ || die "error moving stuff"
     cd ..
     rm -rf spotify-adblock-linux
 fi
