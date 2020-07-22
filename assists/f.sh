@@ -41,6 +41,9 @@ c)
 t)
     firefox trello.com
     ;;
+w)
+    firefox --private-window
+    ;;
 f)
     firefox
     ;;
