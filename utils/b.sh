@@ -68,7 +68,7 @@ if [ -n "$1" ]; then
 		echo "$MAXBRIGHT"
 		;;
 	*)
-		brightness -set ${2:-50}
+		brightness -set "${2:-50}"
 		;;
 
 	esac
