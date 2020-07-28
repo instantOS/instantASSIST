@@ -23,9 +23,8 @@ LAYOUT=$(echo "$LAYOUTLIST" | sidebar)
 if [ -n "$LAYOUT" ]; then
     echo "applying keyboard layout $LAYOUT"
     setxkbmap -layout "$LAYOUT"
-    mkdir -p ~/instantos/
     notify-send '[instantASSIST] keyboard layout changed to '"$LAYOUT"
-    echo "$LAYOUT" >~/instantos/keyboard
+    iconf layout "$LAYOUT"
 else
     echo "not layout selected"
     exit
