@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/dash
 
 # assist: firefox
 
@@ -36,7 +36,7 @@ r)
     firefox reddit.com
     ;;
 c)
-    firefox $(xclip -o)
+    firefox "$(xclip -o)"
     ;;
 t)
     firefox trello.com

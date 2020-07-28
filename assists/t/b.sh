@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/dash
 
 # assist: fix issues with the backlight
 
