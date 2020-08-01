@@ -3,7 +3,7 @@
 # assist: adjust audio volume
 
 pvolume() {
-    amixer set 'Master' "$1"
+    amixer -D pulse set Master "$1"
 }
 
 if [ "$1" -eq "$1" ] &>/dev/null; then
