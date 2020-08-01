@@ -5,7 +5,7 @@
 if [ -e /sys/class/backlight/ ] && [ "$(ls /sys/class/backlight | wc -l)" = "1" ]; then
 	BGPU="/sys/class/backlight/$(ls /sys/class/backlight/)"
 	MAXBRIGHT=$(cat "$BGPU/max_brightness")
-	INSTANTOS_BRIGHTSTEP=${INSTANTOS_BRIGHTSTEP:-$(expr $MAXBRIGHT / 20)}
+	INSTANTOS_BRIGHTSTEP="${INSTANTOS_BRIGHTSTEP:-"(($MAXBRIGHT / 20))"}"
 else
 	notify-send '[instantASSIST] setting brightness is not supported on this device'
 	echo "system doesn't support brightness changing or you ran into a bug here"
@@ -14,10 +14,11 @@ fi
 
 brightness() {
 
-	BRIGHTNESS="$(cat $BGPU/brightness)"
+	BRIGHTNESS="$(cat "$BGPU"/brightness)"
 	case "$1" in
 	-inc)
-		let "bright = $BRIGHTNESS + $2"
+
+		bright="(($BRIGHTNESS + $2))"
 		echo "$bright"
 		if [ "$bright" -lt "$MAXBRIGHT" ] && [ "$bright" -gt 0 ]; then
 			echo "$bright" >"$BGPU/brightness"
@@ -25,7 +26,7 @@ brightness() {
 		fi
 		;;
 	-dec)
-		let "bright = $BRIGHTNESS - $2"
+		bright="(($BRIGHTNESS - $2))"
 		if [ "$bright" -lt "$MAXBRIGHT" ] && [ "$bright" -gt 0 ]; then
 			echo "$bright" >"$BGPU/brightness"
 		fi
@@ -52,13 +53,12 @@ if [ -n "$1" ]; then
 	fi
 
 	case "$1" in
-
 	"+")
-		brightness -inc ${INSTANTOS_BRIGHTSTEP:-5}
+		brightness -inc "${INSTANTOS_BRIGHTSTEP:-5}"
 		;;
 	"-")
 
-		brightness -dec ${INSTANTOS_BRIGHTSTEP:-5}
+		brightness -dec "${INSTANTOS_BRIGHTSTEP:-5}"
 		;;
 	g)
 		cat "$BGPU/brightness"
@@ -69,7 +69,6 @@ if [ -n "$1" ]; then
 	*)
 		brightness -set "${2:-50}"
 		;;
-
 	esac
 	exit
 fi
