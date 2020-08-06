@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 GPUS=$(ls /sys/class/backlight | wc -l)
 
 if [ "$GPUS" = "0" ]; then

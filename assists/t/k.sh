@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # assist: change the keyboard layout
 if [ -n "$1" ]; then

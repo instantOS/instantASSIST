@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # assist: set resolution to 1920x1080 in a virtual machine
 
