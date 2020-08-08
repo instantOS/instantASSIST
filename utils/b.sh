@@ -1,4 +1,4 @@
-#!/nix/store/hrpvwkjz04s9i4nmli843hyw9z4pwhww-bash-4.4-p23/bin/bash
+#!/usr/bin/env bash
 
 # assist: adjust display brightness
 
