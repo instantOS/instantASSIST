@@ -25,7 +25,7 @@ k)
     pvolume 5%+
     ;;
 m)
-    amixer -D pulse set 'Master' toggle
+    pvolume toggle
     ;;
 *)
     echo "not setting audio"
