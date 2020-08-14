@@ -2,7 +2,7 @@
 
 # assist: switch wm , EXPERIMENTAL
 
-WMSELECT="$(cat /usr/share/instantassist/menus/data/wm | instantmenu -c -l 10 -p 'select window manager')"
+WMSELECT="$(instantmenu -c -l 10 -p 'select window manager' </usr/share/instantassist/menus/data/wm)"
 
 if [ -z "$WMSELECT" ]; then
     exit
