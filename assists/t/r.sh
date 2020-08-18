@@ -2,6 +2,8 @@
 
 # assist: set redshift brightness
 
+instantinstall redshift
+
 BRIGHTNESS=$(echo '' | instantmenu -p 'set redshift brightness')
 [ -z "$BRIGHTNESS" ] && exit
 
