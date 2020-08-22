@@ -8,7 +8,7 @@ screencast() {
         -f x11grab \
         -framerate 24 \
         -s "$W"x"$H" \
-        -i :0.0+$X,$Y \
+        -i :0.0+"$X","$Y" \
         -f alsa -i default \
         -r 30 \
         -c:v h264 -c:a flac \

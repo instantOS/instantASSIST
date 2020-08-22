@@ -4,4 +4,4 @@
 
 G=$(slop -f "%g") || exit 1
 
-import -window root -crop "$G" $(xdg-user-dir PICTURES)/$(date '+%Y%m%d%H%M%S').png
+import -window root -crop "$G" "$(xdg-user-dir PICTURES)"/"$(date '+%Y%m%d%H%M%S')".png

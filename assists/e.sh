@@ -1,7 +1,7 @@
 #!/bin/bash
 # assist: emoji picker
 
-cd
+cd || exit 
 
 # exit and remove leftover files
 fail() {
@@ -18,7 +18,7 @@ fail() {
 if ! [ -e .cache/emoji/list.txt ]; then
     notify-send "downloading emoji list"
     mkdir -p .cache/emoji
-    cd .cache/emoji
+    cd .cache/emoji || exit 
 
     if ! checkinternet && ! ping -c 1 google.com; then
         fail "no internet"
@@ -37,7 +37,7 @@ if ! [ -e .cache/emoji/list.txt ]; then
 fi
 
 # pick emojis using
-cd
+cd || exit 
 
 EMOJI="$(cat .cache/emoji/list.txt | instantmenu -b -l 20 -p 'emoji picker' | grep -o ' [^a-zA-Z0-9]*$' | grep -o '[^ ]*')"
 

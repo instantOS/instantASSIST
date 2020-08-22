@@ -10,7 +10,8 @@ newlink() {
         xdotool key Ctrl+l
         sleep 0.1
         xdotool key Ctrl+c
-        export LINK="$(xclip -o -selection clipboard)"
+        LINK="$(xclip -o -selection clipboard)"
+        export LINK
     else
         echo "no clipboardable link found"
         exit

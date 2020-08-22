@@ -10,7 +10,7 @@ else
     heightfit="$height"
 fi
 
-LETTER=$(cat /usr/share/instantassist/data/m | instantmenu -i -b -l "$heightfit" | grep -o '^.')
+LETTER=$(instantmenu -i -b -l "$heightfit" </usr/share/instantassist/data/m | grep -o '^.')
 [ -n "$LETTER" ] || exit 0
 
 xdotool type "$LETTER"

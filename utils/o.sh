@@ -6,6 +6,6 @@ cd || exit 1
 CHOICE="$(fzf)"
 
 if [ -n "$CHOICE" ] && [ -e "$CHOICE" ]; then
-   ~/.config/instantos/default/editor "$CHOICE" &
+   ~/.config/instantos/default/editor "$CHOICE"
 fi
 

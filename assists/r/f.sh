@@ -6,7 +6,7 @@ screencast() {
 	ffmpeg -y \
 		-f x11grab \
 		-framerate 60 \
-		-s $(xdpyinfo | grep dimensions | awk '{print $2;}') \
+		-s "$(xdpyinfo | grep dimensions | awk '{print $2;}')" \
 		-i :0.0 \
 		-f alsa -i default \
 		-r 30 \
