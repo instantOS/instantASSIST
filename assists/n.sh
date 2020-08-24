@@ -1,4 +1,4 @@
-#!/usr/bin/dash
+#!/usr/bin/env sh
 
 # assist: rename current window
 

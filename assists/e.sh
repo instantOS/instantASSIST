@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # assist: emoji picker
 
 cd || exit 

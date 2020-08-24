@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # assist: take a screenshot and upload it to file.coffee
 

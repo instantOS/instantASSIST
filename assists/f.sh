@@ -1,4 +1,4 @@
-#!/usr/bin/dash
+#!/usr/bin/env sh
 
 # assist: web browser
 LIST="$(cat /usr/share/instantassist/data/firefox)"

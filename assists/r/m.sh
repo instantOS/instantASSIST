@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # assist: same as rr but convert to mp4 afterwards
 if [ -e /tmp/instantassistvideoname ]; then

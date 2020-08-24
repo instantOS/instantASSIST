@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # assist: set up screen recordings with ffmpeg, allowing you to choose an area
 

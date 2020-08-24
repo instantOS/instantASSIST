@@ -1,4 +1,4 @@
-#!/usr/bin/dash
+#!/usr/bin/env sh
 
 # assist: attach to tmux session
 
