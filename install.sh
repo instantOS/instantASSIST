@@ -63,7 +63,7 @@ echo "installing instantassist binary"
 chmod 755 instantassist
 chmod 755 instantrepeat
 cp instantassist "${ASSISTPREFIX}"/usr/bin/instantassist
-cp instantassist "${ASSISTPREFIX}"/usr/bin/instantrepeat
+cp instantrepeat "${ASSISTPREFIX}"/usr/bin/instantrepeat
 
 echo "pwd"
 pwd
