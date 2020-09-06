@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# repeat the last instantassist action
+
+if SCRIPT="$(iconf lastassist)" && [ -e "$SCRIPT" ]
+then
+    "$SCRIPT"
+fi
+
