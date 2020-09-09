@@ -18,21 +18,21 @@ brightness() {
     case "$1" in
     -inc)
 
-        bright=$(($BRIGHTNESS + $2))
+        bright=$((BRIGHTNESS + $2))
         echo "$bright"
-        if [ $bright -lt $MAXBRIGHT ] && [ $bright -gt 0 ]; then
+        if [ $bright -lt "$MAXBRIGHT" ] && [ $bright -gt 0 ]; then
             echo "$bright" | tee "$BGPU/brightness"
         fi
         ;;
     -dec)
-        bright=$(($BRIGHTNESS - $2))
-        if [ $bright -lt $MAXBRIGHT ] && [ $bright -gt 0 ]; then
+        bright=$((BRIGHTNESS - $2))
+        if [ "$bright" -lt "$MAXBRIGHT" ] && [ $bright -gt 0 ]; then
             echo "$bright" >"$BGPU/brightness"
         fi
         ;;
 
     -set)
-        if [ $2 -lt $MAXBRIGHT ] && [ $2 -gt 0 ]; then
+        if [ "$2" -lt "$MAXBRIGHT" ] && [ "$2" -gt 0 ]; then
             echo "$2" >"$BGPU/brightness"
         fi
         ;;
