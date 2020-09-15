@@ -18,4 +18,6 @@ else
     SCRIPTPATH=/usr/share/instantassist/assists/"$ASSIST"
 fi
 
-"${SCRIPTPATH}.sh"
+"${SCRIPTPATH}.sh" &
+iconf lastassist "${SCRIPTPATH}.sh"
+
