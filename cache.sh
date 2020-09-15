@@ -11,7 +11,6 @@ CDIR="$(realpath .)/cache"
 cd assists || exit 1
 
 # generate helpfile
-echo "instantASSIST cheat sheet" > "$CACHE"
 
 for i in ./*; do
     echo "processing $i"
@@ -36,4 +35,5 @@ for i in ./*; do
     fi
 done
 
-grep '^[a-z]' "$HELP" | sed 's/: //g' >"$CACHE"
+echo "instantASSIST cheat sheet" > "$CACHE"
+grep '^[a-z]' "$HELP" | sed 's/: //g' >>"$CACHE"
