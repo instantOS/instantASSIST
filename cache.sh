@@ -11,6 +11,7 @@ CDIR="$(realpath .)/cache"
 cd assists || exit 1
 
 # generate helpfile
+echo "instantASSIST cheat sheet" > "$CACHE"
 
 for i in ./*; do
     echo "processing $i"
