@@ -24,7 +24,7 @@ case "$CHOICE" in
         notify-send "[instantASSIST] copied $OUTPUT to clipboard"
         ;;
     *shell)
-        st -e bash -c "echo '$OUTPUT'; echo ''; wc -l"
+        st -e bash -c "echo '$OUTPUT'; echo ''; $CALCULATOR"
         ;;
 esac
 
