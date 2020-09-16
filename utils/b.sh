@@ -12,6 +12,18 @@ else
     exit 1
 fi
 
+if iconf -i hasnvidia; then
+    NVIDIA=true
+fi
+
+syncbright() {
+    if [ -n "$NVIDIA" ]; then
+        light -S "$1"
+    else
+        echo "$1" >"$BGPU/brightness"
+    fi
+}
+
 brightness() {
 
     BRIGHTNESS="$(cat "$BGPU"/brightness)"
@@ -21,19 +33,19 @@ brightness() {
         bright=$((BRIGHTNESS + $2))
         echo "$bright"
         if [ $bright -lt "$MAXBRIGHT" ] && [ $bright -gt 0 ]; then
-            echo "$bright" | tee "$BGPU/brightness"
+            syncbright "$bright"
         fi
         ;;
     -dec)
         bright=$((BRIGHTNESS - $2))
         if [ "$bright" -lt "$MAXBRIGHT" ] && [ $bright -gt 0 ]; then
-            echo "$bright" >"$BGPU/brightness"
+            syncbright "$bright"
         fi
         ;;
 
     -set)
         if [ "$2" -lt "$MAXBRIGHT" ] && [ "$2" -gt 0 ]; then
-            echo "$2" >"$BGPU/brightness"
+            syncbright "$2"
         fi
         ;;
 
