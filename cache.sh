@@ -35,5 +35,4 @@ for i in ./*; do
     fi
 done
 
-echo "instantASSIST cheat sheet" > "$CACHE"
 grep '^[a-z]' "$HELP" | sed 's/: //g' >>"$CACHE"
