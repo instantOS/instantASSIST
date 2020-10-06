@@ -9,12 +9,12 @@ fi
 
 if pgrep spotify >/dev/null 2>&1; then
     # pauses spotify player
-    dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+    spoticli t
     exit
 else
     if playerctl status || true | grep .; then
         playerctl play-pause
     else
-        LD_PRELOAD="/usr/share/instantassist/spotify-adblock.so" spotify
+        spoticli
     fi
 fi
