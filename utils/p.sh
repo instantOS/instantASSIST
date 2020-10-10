@@ -25,7 +25,18 @@ k)
     pvolume 5%+
     ;;
 m)
-    pvolume toggle
+    if iconf -i mute
+    then
+        iconf -i mute 0
+        amixer set Master unmute
+        amixer set Headphone unmute
+        amixer set Speaker unmute
+    else
+        iconf -i mute 1
+        amixer set Master mute
+        amixer set Headphone mute
+        amixer set Speaker mute
+    fi
     ;;
 *)
     echo "not setting audio"
