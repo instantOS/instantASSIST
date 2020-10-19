@@ -7,10 +7,24 @@ if [ -e /sys/class/backlight/ ] && [ "$(ls /sys/class/backlight | wc -l)" = "1" 
     MAXBRIGHT=$(cat "$BGPU/max_brightness")
     INSTANTOS_BRIGHTSTEP=${INSTANTOS_BRIGHTSTEP:-$(($MAXBRIGHT / 20))}
 else
-    notify-send '[instantASSIST] setting brightness is not supported on this device'
+    if [ -z "$NOBRIGHTMESSAGE" ] && ! [ -e /tmp/shuttingdown ]; then
+        notify-send '[instantASSIST] setting brightness is not supported on this device'
+    fi
     echo "system doesn't support brightness changing or you ran into a bug here"
     exit 1
 fi
+
+if iconf -i hasnvidia; then
+    NVIDIA=true
+fi
+
+syncbright() {
+    if [ -n "$NVIDIA" ]; then
+        light -S "$1"
+    else
+        echo "$1" >"$BGPU/brightness"
+    fi
+}
 
 brightness() {
 
@@ -21,19 +35,19 @@ brightness() {
         bright=$((BRIGHTNESS + $2))
         echo "$bright"
         if [ $bright -lt "$MAXBRIGHT" ] && [ $bright -gt 0 ]; then
-            echo "$bright" | tee "$BGPU/brightness"
+            syncbright "$bright"
         fi
         ;;
     -dec)
         bright=$((BRIGHTNESS - $2))
         if [ "$bright" -lt "$MAXBRIGHT" ] && [ $bright -gt 0 ]; then
-            echo "$bright" >"$BGPU/brightness"
+            syncbright "$bright"
         fi
         ;;
 
     -set)
         if [ "$2" -lt "$MAXBRIGHT" ] && [ "$2" -gt 0 ]; then
-            echo "$2" >"$BGPU/brightness"
+            syncbright "$2"
         fi
         ;;
 

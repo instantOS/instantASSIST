@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # assist: same as rr but convert to mp4 afterwards
-if [ -e /tmp/instantassistvideoname ]; then
+if [ -e /tmp/recordingpid ]; then
     pgrep ffmpeg && /usr/share/instantassist/assists/r/r.sh
     DATEFILE="$(cat /tmp/instantassistvideoname)"
     cd "$(xdg-user-dir VIDEOS)" || exit

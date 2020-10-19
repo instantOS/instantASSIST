@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# assist: map your huion graphics tablet to only one monitor.
+# assist: map your graphics tablet to only one monitor.
 
 huid=$(xinput | grep -i pen | grep -Eo '[a-zA-Z0-9].*id=[0-9]*' | instantmenu -l 10 | grep -Eo 'id=[0-9]*' | grep -Eo '[0-9]*')
 if [ -z "$huid" ]; then

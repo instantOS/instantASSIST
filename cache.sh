@@ -35,4 +35,4 @@ for i in ./*; do
     fi
 done
 
-grep '^[a-z]' "$HELP" | sed 's/: //g' >"$CACHE"
+grep '^[a-z]' "$HELP" | sed 's/: //g' >>"$CACHE"
