@@ -1,4 +1,4 @@
 #!/bin/bash
 
-# assist: previous track
+# assist: media control - previous track
 playerctl previous

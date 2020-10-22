@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# assist: pick layout
+# assist: pick window layout
 
 instantpicklayout 
 

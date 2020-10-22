@@ -1,4 +1,4 @@
 #!/bin/bash
 
-# assist: toggle pause
+# assist: media control - toggle pause
 playerctl play-pause

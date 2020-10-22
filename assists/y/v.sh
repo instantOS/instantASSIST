@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# assist: download clipboard link with youtube-dl
+# assist: download video from clipboard link
 
 LINK="$(/usr/share/instantassist/utils/y.sh)"
 if [ -z "$LINK" ]

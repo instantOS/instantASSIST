@@ -1,4 +1,5 @@
 #!/bin/bash
 
-# assist: skip track
+# assist: media control - skip track
+
 playerctl next
