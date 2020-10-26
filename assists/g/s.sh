@@ -51,7 +51,7 @@ processchoice() {
         {
             echo "rescan servers"
             cat ~/.cache/instantos/localssh
-        } | imenu -C "ssh server browser"
+        } | imenu -l "ssh server browser"
     )"
 
     [ -z "$CHOICE" ] && exit
