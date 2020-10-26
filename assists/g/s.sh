@@ -19,11 +19,13 @@ if [ -z "$LOCALIP" ]; then
     exit 1
 fi
 
+LOCALNETWORK="$(sed 's/\.[0-9]*$/.0\/24/g' <<< "$LOCALIP")"
+
 scanservers() {
     notify-send "scanning local network for ssh servers"
     instantinstall nmap
-    nmap --open -p 22,8022 192.168.178.0/24 -oG - | grep 'Ports: ' | sed 's/Host: \([0-9.]*\).*Ports: \([0-9]*\).*/\1 \2/g' >~/.cache/instantos/localssh
     mkdir -p ~/.cache/instantos/
+    nmap --open -p 22,8022 "$LOCALNETWORK" -oG - | grep 'Ports: ' | sed 's/Host: \([0-9.]*\).*Ports: \([0-9]*\).*/\1 \2/g' >~/.cache/instantos/localssh
 }
 
 if ! [ -e ~/.cache/instantos/localssh ]; then
@@ -61,11 +63,13 @@ processchoice() {
         return
     fi
 
-    IPADRESS="$(grep -o '^[^ ]*' <<< "$CHOICE")"
-    PORT="$(grep -o '[^ ]*$' <<< "$CHOICE")"
+    SSHADRESS="$(grep -o '^[^ ]*' <<< "$CHOICE")"
+    SSHPORT="$(grep -o '[^ ]*$' <<< "$CHOICE")"
 
-    echo "connecting to $IPADRESS on port $PORT"
+    echo "connecting to $SSHADRESS on port $SSHPORT"
 
 }
 
 processchoice
+SSHNAME="$(imenu -i "enter username" "username" "$(whoami)")"
+st -e bash -c "ssh $SSHNAME@$SSHADRESS -p $SSHPORT"
