@@ -2,7 +2,7 @@
 
 # assist: map your graphics tablet to only one monitor.
 
-huid=$(xinput | grep -i pen | grep -Eo '[a-zA-Z0-9].*id=[0-9]*' | instantmenu -l 10 | grep -Eo 'id=[0-9]*' | grep -Eo '[0-9]*')
+huid=$(xinput | grep -i 'pen' | grep -Eo '[a-zA-Z0-9].*id=[0-9]*' | instantmenu -l 10 -p 'choose pen ' | grep -Eo 'id=[0-9]*' | grep -Eo '[0-9]*')
 if [ -z "$huid" ]; then
     echo "no input device selected"
     exit
