@@ -13,4 +13,5 @@ fi
 mkdir -p "$(xdg-user-dir MUSIC)" &>/dev/null
 cd "$(xdg-user-dir MUSIC)" || exit 1
 notify-send '[instantASSIST] downloading audio'
+instantinstall youtube-dl || exit 1
 youtube-dl --playlist-items 1 -x "$LINK" || exit

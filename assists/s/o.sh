@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# assist: screenshot a selected area and open it in a preview window
+# "freeze" part of the screen
 
 G=$(slop -f "%g") || exit 1
 
@@ -14,7 +14,7 @@ import -window root -crop "$G" "$SCDIR"/"$PICNAME"
 
 # make feh floating
 instantwmctrl specialnext 1
-feh --geometry "$G" "$SCDIR"/"$PICNAME" &
+feh --title "instantASSIST screen freeze" --geometry "$G" "$SCDIR"/"$PICNAME" &
 sleep 1
 
 rm "$SCDIR"/"$PICNAME"
