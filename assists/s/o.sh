@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# "freeze" part of the screen
+# assist: "freeze" part of the screen
 
 G=$(slop -f "%g") || exit 1
 
