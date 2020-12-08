@@ -10,7 +10,7 @@ else
     if ! iconf -i uselight; then
         if light -G | grep -q '^[0.]*$'; then
             if [ -z "$NOBRIGHTMESSAGE" ] && ! [ -e /tmp/shuttingdown ]; then
-                notify-send '[instantASSIST] setting brightness is not supported on this device'
+                notify-send -a instantASSIST 'setting brightness is not supported on this device'
             fi
             echo "system doesn't support brightness changing or you ran into a bug here"
             exit 1

@@ -22,7 +22,7 @@ fi
 LOCALNETWORK="$(sed 's/\.[0-9]*$/.0\/24/g' <<< "$LOCALIP")"
 
 scanservers() {
-    notify-send "scanning local network for ssh servers"
+    notify-send -a instantASSIST "scanning local network for ssh servers"
     instantinstall nmap
     mkdir -p ~/.cache/instantos/
     nmap --open -p 22,8022 "$LOCALNETWORK" -oG - | grep 'Ports: ' | sed 's/Host: \([0-9.]*\).*Ports: \([0-9]*\).*/\1 \2/g' >~/.cache/instantos/localssh

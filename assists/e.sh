@@ -7,16 +7,16 @@ cd || exit
 fail() {
     [ -e ~/.cache/emoji/list.txt ] && rm ~/.cache/emoji/list.txt
     if [ -n "$1" ]; then
-        notify-send "error: $1"
+        notify-send -a instantASSIST "error: $1"
     else
-        notify-send 'emoji download failed'
+        notify-send -a instantASSIST 'emoji download failed'
     fi
     exit 1
 }
 
 # fetch list of emojis from unicode.org
 if ! [ -e .cache/emoji/list.txt ]; then
-    notify-send "downloading emoji list"
+    notify-send -a instantASSIST "downloading emoji list"
     mkdir -p .cache/emoji
     cd .cache/emoji || exit 
 

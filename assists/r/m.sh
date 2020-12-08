@@ -6,13 +6,13 @@ if [ -e /tmp/recordingpid ]; then
     DATEFILE="$(cat /tmp/instantassistvideoname)"
     cd "$(xdg-user-dir VIDEOS)" || exit
     if [ -e "$DATEFILE.mkv" ]; then
-        notify-send "converting to mp4"
+        notify-send -a instantASSIST "converting to mp4"
         ffmpeg -i "$DATEFILE.mkv" "$DATEFILE.mp4"
-        notify-send "converting done"
+        notify-send -a instantASSIST "converting done"
         rm "$DATEFILE.mkv"
         rm /tmp/instantassistvideoname
     else
-        notify-send "recording failed"
+        notify-send -a instantASSIST "recording failed"
         rm /tmp/instantassistvideoname
     fi
     exit

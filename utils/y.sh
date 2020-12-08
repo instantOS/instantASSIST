@@ -5,7 +5,6 @@
 LINK="$(xclip -o -selection clipboard)"
 
 newlink() {
-
     if ! grep -q '....' <<<"$LINK"; then
         # no link detected, attempt getting link from firefox
         if xdotool getactivewindow getwindowname | grep -iq 'mozilla firefox'; then
@@ -28,7 +27,7 @@ cleanlink() {
 download the current video' | imenu -C 'link is a playlist')"
 
         if [ -z "$CHOICE" ]; then
-            notify-send "download cancelled"
+            notify-send -a instantASSIST "download cancelled" -a instantASSIST
             exit 1
         fi
 
@@ -51,6 +50,10 @@ if [ -e /tmp/instantos/youtube.txt ]; then
         newlink
         if [ "$LINK" = "$OLDLINK" ]; then
             # still on the same webpage
+            if imenu -c 'there already has been a download for this link. redownload?'
+            then
+                echo "$LINK"
+            fi
             exit
         fi
         cleanlink

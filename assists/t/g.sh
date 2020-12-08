@@ -10,4 +10,4 @@ function reload_gtk_theme() {
 }
 
 reload_gtk_theme
-notify-send '[instantASSIST] gtk theme has been reloaded'
+notify-send -a instantASSIST ' gtk theme has been reloaded'

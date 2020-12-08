@@ -16,5 +16,5 @@ elif grep -q '^1$' <<<"$BRIGHTNESS"; then
     pgrep redshift && pkill redshift
 else
     echo "invalid redshift input"
-    notify-send "enter a value between 0 and 1"
+    notify-send -a instantASSIST "enter a value between 0 and 1"
 fi

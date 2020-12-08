@@ -21,7 +21,7 @@ CHOICE="$(echo ">>h Output: $OUTPUT
 case "$CHOICE" in
     *clipboard)
         echo "$OUTPUT" | xclip -selection c
-        notify-send "[instantASSIST] copied $OUTPUT to clipboard"
+        notify-send "copied $OUTPUT to clipboard"
         ;;
     *shell)
         st -e bash -c "echo '$OUTPUT'; echo ''; $CALCULATOR"

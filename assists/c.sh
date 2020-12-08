@@ -3,10 +3,10 @@
 # assist: toggle compositing
 
 if pgrep picom; then
-    notify-send '[instantASSIST] compositing disabled'
+    notify-send -a instantASSIST ' compositing disabled'
     pkill picom
     exit
 else
-    notify-send '[instantASSIST] compositing enabled'
+    notify-send -a instantASSIST ' compositing enabled'
     ipicom
 fi

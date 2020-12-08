@@ -14,5 +14,5 @@ if command -v "$WMSELECT" &>/dev/null; then
     sleep 0.2
     killwm
 else
-    notify-send "[instantASSIST] $WMSELECT is not installed"
+    notify-send -a instantASSIST " $WMSELECT is not installed"
 fi
