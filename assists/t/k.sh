@@ -24,8 +24,9 @@ if [ -n "$LAYOUT" ]; then
     echo "applying keyboard layout $LAYOUT"
     setxkbmap -layout "$LAYOUT"
     notify-send -a instantASSIST 'keyboard layout changed to '"$LAYOUT"
+    iconf r keyvariant
     iconf layout "$LAYOUT"
 else
-    echo "not layout selected"
+    echo "no layout selected"
     exit
 fi
