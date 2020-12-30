@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/env bash
 
 # assist: download audio from clipboard link
 
