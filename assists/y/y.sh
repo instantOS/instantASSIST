@@ -1,6 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/dash
 
 # assist: download audio from clipboard link
+
+instantinstall youtube-dl || exit 1
 
 LINK="$(/usr/share/instantassist/utils/y.sh)"
 if [ -z "$LINK" ]
@@ -13,5 +15,4 @@ fi
 mkdir -p "$(xdg-user-dir MUSIC)" &>/dev/null
 cd "$(xdg-user-dir MUSIC)" || exit 1
 notify-send -a instantASSIST ' downloading audio'
-instantinstall youtube-dl || exit 1
 youtube-dl --playlist-items 1 -x "$LINK" || exit
