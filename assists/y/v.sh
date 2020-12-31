@@ -2,6 +2,7 @@
 
 # assist: download video from clipboard link
 
+instantinstall youtube-dl || exit 1
 
 LINK="$(/usr/share/instantassist/utils/y.sh)"
 if [ -z "$LINK" ]
@@ -14,6 +15,4 @@ fi
 mkdir -p "$(xdg-user-dir VIDEOS)" &>/dev/null
 cd "$(xdg-user-dir VIDEOS)" || exit 1
 notify-send -a instantASSIST ' downloading video'
-instantinstall youtube-dl || exit 1
-youtube-dl --playlist-items 1 -x "$LINK" || exit
-
+youtube-dl --playlist-items 1 "$LINK" || exit
