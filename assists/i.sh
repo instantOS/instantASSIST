@@ -15,5 +15,5 @@ page="$(
 
 for i in $page
 do
-	st -e man "$i" &
+	"$HOME/.config/instantos/default/terminal" -e man "$i" &
 done
