@@ -7,7 +7,7 @@ page="$(
 		sed 's/:/\/man\* /g'
 	)/man* |
 	sed '/\//d; s/\.gz//g' |
-	awk '!a[$0]++' |\
+	awk '!a[$0]++' |
 	instantmenu -p "       " -q 'search man pages' -l 12 -h -1
 )"
 
