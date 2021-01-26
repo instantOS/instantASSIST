@@ -5,8 +5,7 @@
 instantinstall youtube-dl || exit 1
 
 LINK="$(/usr/share/instantassist/utils/y.sh)"
-if [ -z "$LINK" ]
-then
+if [ -z "$LINK" ]; then
     echo "couldn't get link"
     notify-send -a instantASSIST "please copy a video link to clipboard"
     exit 1
