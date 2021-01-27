@@ -3,6 +3,7 @@
 # screen recording functions
 
 killrecording() {
+    notify-send "stopping recording"
     recpid="$(cat /tmp/recordingpid)"
     # kill with SIGTERM, allowing finishing touches.
     kill -15 "$recpid"
@@ -10,7 +11,6 @@ killrecording() {
     # even after SIGTERM, ffmpeg may still run, so SIGKILL it.
     sleep 4
     kill -9 "$recpid"
-    exit
 }
 
 VIDEODIR="$(xdg-user-dir VIDEOS)"
@@ -19,7 +19,6 @@ VIDEODIR="$(xdg-user-dir VIDEOS)"
 # screencast an area
 checkrecording() {
     if [ -e /tmp/recordingpid ]; then
-        notify-send "stopping recording"
         killrecording
         return 1
     fi
@@ -35,44 +34,34 @@ areascreencast() {
     checkrecording || return 1
     slop=$(slop -f "%x %y %w %h %g %i") || return 1
     read -r X Y W H G ID < <(echo "$slop")
-    ffmpeg -y \
-        -f x11grab \
-        -framerate 24 \
-        -s "$W"x"$H" \
-        -i :0.0+"$X","$Y" \
-        -f alsa -i default \
-        -r 30 \
-        -c:v h264 -c:a flac \
-        "$(getcastname)" &
-    echo "$! >/"tmp/recordingpid
+    ffmpeg -framerate 25 -s "$W"x"$H" -f x11grab -i :0.0+"$X","$Y" -f pulse -ac 2 -i default "$(getcastname)" &
+    echo "$!" >/tmp/recordingpid
 }
 
 fullscreencast() {
     checkrecording || return 1
-    ffmpeg -y \
-        -f x11grab \
-        -framerate 60 \
-        -s "$(xdpyinfo | grep dimensions | awk '{print $2;}')" \
-        -i :0.0 \
-        -f alsa -i default \
-        -r 30 \
-        -c:v libx264rgb -crf 0 -preset ultrafast -c:a flac \
-        "$(getcastname)" &
-    echo "$! >/"tmp/recordingpid
+    ffmpeg -framerate 25 -s "$(xdpyinfo | grep dimensions | awk '{print $2;}')" -f x11grab -i :0.0 -f pulse -ac 2 -i default "$(getcastname)" &
+    echo "$!" >/tmp/recordingpid
 }
 
+# stop recording and convert to mp4 for quick usage on social media (usually doesn't support mkv)
 convertrecording() {
+    if [ -e /tmp/recordingpid ]; then
+        killrecording
+        sleep 2
+    fi
     if [ -e /tmp/recordingname ] &&
         [ -e "$(cat /tmp/recordingname)" ]; then
         echo "required files for conversion found"
     else
         return 1
     fi
-    if [ -e /tmp/recordingpid ]; then
-        killrecording
+    if ! cd "$VIDEODIR"; then
+        echo "video directory error"
+        return 1
     fi
-    cd "$VIDEODIR" || return 1
     SOURCEFILE="$(cat /tmp/recordingname)"
-    ffmpeg -i "$SOURCEFILE" "${SOURCEFILE#.mkv}" && rm "$SOURCEFILE"
+    notify-send "converting recording"
+    ffmpeg -i "$SOURCEFILE" "${SOURCEFILE%.mkv}.mp4" && rm "$SOURCEFILE"
     rm /tmp/recordingname
 }
