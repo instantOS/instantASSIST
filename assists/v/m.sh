@@ -4,7 +4,7 @@
 
 amixer -D pulse sset Capture toggle
 
-MICSTATUS=$(amixer get Capture | grep -w -o -e "on\|off" | sort -u | tr "[a-z]" "[A-Z]")
+MICSTATUS=$(amixer -D pulse get Capture | grep -w -o -e "on\|off" | sort -u | tr "[a-z]" "[A-Z]")
 
 if [ $MICSTATUS == "OFF" ]; then
     MICICON="/usr/share/icons/Papirus-Dark/symbolic/status/microphone-sensitivity-muted-symbolic.svg"
