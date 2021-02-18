@@ -12,7 +12,7 @@ OUTPUT="$(printf "%g" "$($CALCULATOR <<< "$INPUT")")"
 [ -z "$OUTPUT" ] && exit
 
 CHOICE="$(echo ">>h Output: $OUTPUT
-:b Copy op clipboard
+:b Copy to clipboard
 :b Open in shell
 :r Close" | instantmenu -h -1 -l 20 -q "Calculator")"
 

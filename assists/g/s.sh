@@ -26,6 +26,7 @@ scanservers() {
     instantinstall nmap
     mkdir -p ~/.cache/instantos/
     nmap --open -p 22,8022 "$LOCALNETWORK" -oG - | grep 'Ports: ' | sed 's/Host: \([0-9.]*\).*Ports: \([0-9]*\).*/\1 \2/g' >~/.cache/instantos/localssh
+    # TODO: close button
 }
 
 if ! [ -e ~/.cache/instantos/localssh ]; then
