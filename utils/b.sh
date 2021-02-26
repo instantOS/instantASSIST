@@ -39,17 +39,29 @@ brightness() {
     case "$1" in
     -inc)
 
-        bright=$((BRIGHTNESS + $2))
-        echo "$bright"
-        if [ $bright -lt "$MAXBRIGHT" ] && [ $bright -gt 0 ]; then
-            syncbright "$bright"
-        fi
+	if [ -n "$USELIGHT" ]
+	then
+	    light -A $2
+	else
+            bright=$((BRIGHTNESS + $2))
+            echo "$bright"
+            if [ $bright -lt "$MAXBRIGHT" ] && [ $bright -gt 0 ]; then
+                syncbright "$bright"
+            fi
+
+	fi
         ;;
     -dec)
-        bright=$((BRIGHTNESS - $2))
-        if [ "$bright" -lt "$MAXBRIGHT" ] && [ $bright -gt 0 ]; then
-            syncbright "$bright"
-        fi
+	if [ -n "$USELIGHT" ]
+	then
+	    light -U $2
+	else
+            bright=$((BRIGHTNESS - $2))
+            if [ "$bright" -lt "$MAXBRIGHT" ] && [ $bright -gt 0 ]; then
+                syncbright "$bright"
+            fi
+
+	fi
         ;;
 
     -set)
