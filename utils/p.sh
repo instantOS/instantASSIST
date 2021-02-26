@@ -28,14 +28,14 @@ m)
     if iconf -i mute
     then
         iconf -i mute 0
-        amixer set Master unmute
-        amixer set Headphone unmute
-        amixer set Speaker unmute
+        amixer set Master unmute || amixer -D pulse set Master unmute
+        amixer set Headphone unmute || amixer -D pulse set Headphone unmute
+        amixer set Speaker unmute || amixer -D pulse set Speaker unmute
     else
         iconf -i mute 1
-        amixer set Master mute
-        amixer set Headphone mute
-        amixer set Speaker mute
+        amixer set Master mute || amixer -D pulse set Master mute
+        amixer set Headphone mute || amixer -D pulse set Headphone mute
+        amixer set Speaker mute || amixer -D pulse set Speaker mute
     fi
     ;;
 *)
