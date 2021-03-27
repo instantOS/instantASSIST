@@ -4,6 +4,7 @@
 
 rm -rf cache
 mkdir cache
+SEARCH="$(realpath .)/cache/search"
 HELP="$(realpath .)/cache/help"
 CACHE="$(realpath .)/cache/cache"
 CDIR="$(realpath .)/cache"
@@ -26,12 +27,14 @@ for i in ./*; do
             SUBNAME=$(grep -o '[a-z]\.' <<<"$u" | grep -o '[a-z]')
             echo "    $SUBNAME$(grep '# assist: ' "$u" | grep -o ':.*')" >>"$HELP"
             echo "$SUBNAME$(grep '# assist: ' "$u" | sed 's/^# assist: //g')" >>"$CDIR/$CATNAME/cache"
+	    echo "$(grep '# assist: ' "$u" | sed 's/^# assist: //g') ($CATNAME$SUBNAME)" >> "$SEARCH"
         done
         echo "" >>"$HELP"
         cd .. || exit
     else
         SUBNAME=$(grep -o '[a-z]\.' <<<"$i" | grep -o '[a-z]')
         echo "$SUBNAME$(grep '# assist: ' "$i" | grep -o ':.*')" >>"$HELP"
+	echo "$(grep '# assist: ' "$i" | sed 's/^# assist: //g') ($SUBNAME)" >> "$SEARCH"
     fi
 done
 
