@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# assist: random number
+# assist: random number from range
 
 MIN="$(echo 0 | instantmenu -p 'from')"
 MAX="$(echo 10 | instantmenu -p 'to')"
