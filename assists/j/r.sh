@@ -3,23 +3,32 @@
 # assist: random number from range
 
 MIN="$(echo 0 | instantmenu -p 'from')"
-MAX="$(echo 10 | instantmenu -p 'to')"
+MAX="$(echo 1 | instantmenu -p 'to')"
 
-if [ $MIN -gt $MAX ] || [ $MIN -eq $MAX ]
-then
+if [ "$MIN" -gt "$MAX" ] || [ "$MIN" -eq "$MAX" ]; then
     notify-send "nonlogical input"
     exit
 fi
 
-OUTPUT="$(( ( RANDOM % $MAX ) + $MIN ))"
+NEWNUMBER=true
+while [ -n "$NEWNUMBER" ]; do
 
-CHOICE="$(echo ">>h Output: $OUTPUT
+    unset NEWNUMBER
+    OUTPUT="$(((RANDOM % MAX) + MIN))"
+
+    CHOICE="$(echo ">>h Output: $OUTPUT
+:b ﱬNew number
 :b Copy to clipboard
-:r Close" | instantmenu -h -1 -l 20 -q "Random number")"
+:r Close" | instantmenu -h -1 -l 20 -q "Random number" -ps 1)"
 
-case "$CHOICE" in
+    case "$CHOICE" in
     *clipboard)
         echo "$OUTPUT" | xclip -selection c
         notify-send "copied $OUTPUT to clipboard"
         ;;
-esac
+    *number)
+        NEWNUMBER=true
+        ;;
+    esac
+
+done
