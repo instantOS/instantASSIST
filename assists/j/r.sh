@@ -10,6 +10,10 @@ if [ "$MIN" -gt "$MAX" ] || [ "$MIN" -eq "$MAX" ]; then
     exit
 fi
 
+if [ "$MIN" -eq 0 ]; then
+    MAX=$((MAX + 1))
+fi
+
 NEWNUMBER=true
 while [ -n "$NEWNUMBER" ]; do
 
