@@ -14,4 +14,5 @@ fi
 mkdir -p "$(xdg-user-dir VIDEOS)" &>/dev/null
 cd "$(xdg-user-dir VIDEOS)" || exit 1
 notify-send -a instantASSIST ' downloading video'
-youtube-dl --playlist-items 1 "$LINK" || exit
+youtube-dl --playlist-items 1 "$LINK" || { notify-send -a instantASSIST " video download failed"; exit 1;}
+notify-send -a instantASSIST " video downloaded ($(xdg-user-dir VIDEOS))"
