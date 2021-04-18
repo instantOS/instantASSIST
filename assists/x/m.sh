@@ -2,10 +2,9 @@
 
 # assist: manually set window opacity
 
-if ! command -v transset; then
-    instantinstall xorg-transset
-fi
+instantinstall xorg-transset && \
 
+{
 OPACITY="$(imenu -i 'enter opacity (between 0 and 1)')"
 [ -z "$OPACITY" ] && exit
 if ! grep -q '^[0-9.]*$' <<<"$OPACITY"; then
@@ -13,3 +12,4 @@ if ! grep -q '^[0-9.]*$' <<<"$OPACITY"; then
 fi
 
 transset "$OPACITY"
+}

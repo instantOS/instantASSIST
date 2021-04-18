@@ -2,5 +2,5 @@
 
 # assist: hollywood hakerman
 
-instantinstall hollywood
+instantinstall hollywood && \
 st -e bash -c hollywood

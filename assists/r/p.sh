@@ -2,5 +2,5 @@
 
 # assist: record gif using peek
 
-instantinstall peek
+instantinstall peek && \
 peek &
