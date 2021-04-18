@@ -2,6 +2,5 @@
 
 # assist: take screenshot and annotate it using flameshot
 
-instantinstall flameshot
-
+instantinstall flameshot && \
 flameshot gui

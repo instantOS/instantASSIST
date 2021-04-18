@@ -2,8 +2,9 @@
 
 # assist: download audio from clipboard link
 
-instantinstall youtube-dl || exit 1
+instantinstall youtube-dl && \
 
+{
 LINK="$(/usr/share/instantassist/utils/y.sh)"
 if [ -z "$LINK" ]; then
     echo "couldn't get link"
@@ -16,3 +17,4 @@ cd "$(xdg-user-dir MUSIC)" || exit 1
 notify-send -a instantASSIST ' downloading audio'
 youtube-dl --format bestaudio --add-metadata --playlist-items 1 -x "$LINK" || { notify-send -a instantASSIST " audio download failed"; exit 1;}
 notify-send -a instantASSIST " audio downloaded ($(xdg-user-dir MUSIC))";
+}

@@ -2,9 +2,5 @@
 
 # assist: make window opaque
 
-if ! command -v transset
-then
-    instantinstall xorg-transset
-fi
-
+instantinstall xorg-transset && \
 transset 1
