@@ -2,12 +2,12 @@
 
 # assist: set redshift brightness
 
-instantinstall redshift
+instantinstall redshift && \
 
+{
 BRIGHTNESS=$(echo '' | instantmenu -p 'set redshift brightness')
 [ -z "$BRIGHTNESS" ] && exit
 
-instantinstall redshift
 if grep -q '^[0-9]*\.[0-9]*$' <<<"$BRIGHTNESS"; then
     pgrep redshift && pkill redshift
     redshift -b "$BRIGHTNESS"
@@ -18,3 +18,4 @@ else
     echo "invalid redshift input"
     notify-send -a instantASSIST "enter a value between 0 and 1"
 fi
+}

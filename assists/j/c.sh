@@ -2,5 +2,5 @@
 
 # assist: cmatrix
 
-instantinstall cmatrix
+instantinstall cmatrix && \
 st -e bash -c cmatrix

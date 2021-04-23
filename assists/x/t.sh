@@ -2,9 +2,5 @@
 
 # assist: make window partially transparent
 
-if ! command -v transset
-then
-    instantinstall xorg-transset
-fi
-
+instantinstall xorg-transset && \
 transset 0.75
