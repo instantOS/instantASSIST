@@ -4,6 +4,9 @@
 
 instantinstall nmap
 getlocalip() {
+    if ! command -v ifconfig; then
+        instantinstall net-tools || exit 1
+    fi
     TEMPIP="$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')"
     if grep -q '192' <<<"$TEMPIP"; then
         echo "$TEMPIP" | grep '192' | tail -1
@@ -19,7 +22,7 @@ if [ -z "$LOCALIP" ]; then
     exit 1
 fi
 
-LOCALNETWORK="$(sed 's/\.[0-9]*$/.0\/24/g' <<< "$LOCALIP")"
+LOCALNETWORK="$(sed 's/\.[0-9]*$/.0\/24/g' <<<"$LOCALIP")"
 
 scanservers() {
     notify-send -a instantASSIST "scanning local network for ssh servers"
@@ -57,15 +60,14 @@ processchoice() {
 
     [ -z "$CHOICE" ] && exit
 
-    if grep -q 'rescan' <<< "$CHOICE"
-    then
+    if grep -q 'rescan' <<<"$CHOICE"; then
         scanservers
         processchoice
         return
     fi
 
-    SSHADRESS="$(grep -o '^[^ ]*' <<< "$CHOICE")"
-    SSHPORT="$(grep -o '[^ ]*$' <<< "$CHOICE")"
+    SSHADRESS="$(grep -o '^[^ ]*' <<<"$CHOICE")"
+    SSHPORT="$(grep -o '[^ ]*$' <<<"$CHOICE")"
 
     echo "connecting to $SSHADRESS on port $SSHPORT"
 
