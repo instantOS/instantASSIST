@@ -3,4 +3,4 @@
 # assist: cmatrix
 
 instantinstall cmatrix && \
-st -e bash -c cmatrix
+instantutils open terminal -e bash -c cmatrix

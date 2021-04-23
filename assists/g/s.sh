@@ -73,4 +73,4 @@ processchoice() {
 
 processchoice
 SSHNAME="$(imenu -i "enter username" "username" "$(whoami)")"
-st -e bash -c "ssh $SSHNAME@$SSHADRESS -p $SSHPORT"
+instantutils open terminal -e bash -c "ssh $SSHNAME@$SSHADRESS -p $SSHPORT"

@@ -3,4 +3,4 @@
 # assist: hollywood hakerman
 
 instantinstall hollywood && \
-st -e bash -c hollywood
+instantutils open terminal -e bash -c hollywood
