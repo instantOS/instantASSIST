@@ -2,7 +2,7 @@
 
 # assist: "freeze" part of the screen
 
-G=$(instnatslop -f "%g") || exit 1
+G=$(instantslop -f "%g") || exit 1
 
 SCDIR="/tmp/instantos/screenshot/$(whoami)"
 
