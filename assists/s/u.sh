@@ -2,7 +2,7 @@
 
 # assist: take a screenshot and upload it to file.coffee
 
-G=$(slop -f "%g") || exit 1
+G=$(instantslop -f "%g") || exit 1
 SCROTNAME="$(date '+%Y%m%d%H%M%S')"
 PICTUREDIR="$(xdg-user-dir PICTURES)"
 import -window root -crop "$G" "$PICTUREDIR/$SCROTNAME.png"
