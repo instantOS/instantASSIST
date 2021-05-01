@@ -32,7 +32,8 @@ getcastname() {
 
 areascreencast() {
     checkrecording || return 1
-    slop=$(slop -f "%x %y %w %h %g %i") || return 1
+    export SLOPCOLOR=red
+    slop=$(instantslop -f "%x %y %w %h %g %i") || return 1
     read -r X Y W H G ID < <(echo "$slop")
     ffmpeg -framerate 25 -s "$W"x"$H" -f x11grab -i :0.0+"$X","$Y" -f pulse -ac 2 -i default "$(getcastname)" &
     echo "$!" >/tmp/recordingpid
