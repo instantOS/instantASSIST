@@ -2,4 +2,4 @@
 
 # assist: sl
 
-st -e bash -c sl
+instantutils open terminal -e bash -c sl

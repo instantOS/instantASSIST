@@ -7,4 +7,4 @@ CHOICE="$(tmux ls -F '#{?session_attached,:#{?session_many_attached,y ,b }
 [ -z "$CHOICE" ] && exit
 
 NUMBER=$(echo "$CHOICE" | grep -o '^[^:]*')
-st -e dash -c "tmux attach -t $NUMBER" &
+instantutils open terminal -e dash -c "tmux attach -t $NUMBER" &

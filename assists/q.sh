@@ -9,5 +9,5 @@
 QUESTION="$(echo "" | instantmenu -p 'ask tuxi a question')"
 [ -z "$QUESTION" ] && exit
 
-st -e "dash" -c "tuxi '$QUESTION' | less -r --mouse --wheel-lines 3"
+instantutils open terminal -e "dash" -c "tuxi '$QUESTION' | less -r --mouse --wheel-lines 3"
 }

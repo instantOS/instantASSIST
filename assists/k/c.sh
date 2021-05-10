@@ -24,7 +24,7 @@ case "$CHOICE" in
         notify-send "copied $OUTPUT to clipboard"
         ;;
     *shell)
-        st -e bash -c "echo '$OUTPUT'; echo ''; $CALCULATOR"
+        instantutils open terminal -e bash -c "echo '$OUTPUT'; echo ''; $CALCULATOR"
         ;;
 esac
 
