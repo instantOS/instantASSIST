@@ -13,15 +13,15 @@ LINK="$(echo "$LIST" | instantmenu -ct | sed 's/^.//g')"
 
 case "$LINK" in
 clipboard)
-    ~/.config/instantos/default/browser "$(xclip -o)"
+    instantutils open browser "$(xclip -o)"
     ;;
 *firefox)
     firefox --private-window
     ;;
 *tab)
-    ~/.config/instantos/default/browser
+    instantutils open browser
     ;;
 *)
-    ~/.config/instantos/default/browser "$LINK"
+    instantutils open browser "$LINK"
     ;;
 esac
