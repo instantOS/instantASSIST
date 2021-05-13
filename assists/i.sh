@@ -14,5 +14,5 @@ page="$(
 [ -z "$page" ] && exit 0
 
 for i in $page; do
-	"$HOME/.config/instantos/default/terminal" -e man "$i" &
+	instantutils open terminal -e man "$i" &
 done
