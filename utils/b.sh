@@ -23,6 +23,7 @@ fi
 if iconf -i uselight; then
     USELIGHT=true
     MAXBRIGHT="100"
+    INSTANTOS_BRIGHTSTEP="5"
 fi
 
 syncbright() {
