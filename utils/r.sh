@@ -65,4 +65,5 @@ convertrecording() {
     notify-send "converting recording"
     ffmpeg -i "$SOURCEFILE" "${SOURCEFILE%.mkv}.mp4" && rm "$SOURCEFILE"
     rm /tmp/recordingname
+    notify-send "converting finished"
 }
