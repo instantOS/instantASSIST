@@ -17,5 +17,5 @@ convert -size 45x45 "xc:$DATA" "$SCDIR/$PICNAME"
 
 notify-send "$DATA copied to clipboard" --icon="$SCDIR/$PICNAME"
 
-rm $SCDIR/$PICNAME
+rm "$SCDIR/$PICNAME"
 }
