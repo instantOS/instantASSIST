@@ -4,6 +4,9 @@
 
 killrecording() {
     notify-send "stopping recording"
+    keypid="$(cat /tmp/screenkeypid)"
+    [ -n "$keypid" ] && kill $keypid
+
     recpid="$(cat /tmp/recordingpid)"
     # kill with SIGTERM, allowing finishing touches.
     kill -15 "$recpid"
@@ -42,6 +45,13 @@ fullscreencast() {
     checkrecording || return 1
     ffmpeg -framerate 25 -s "$(xdpyinfo | grep dimensions | awk '{print $2;}')" -f x11grab -i :0.0 -f pulse -ac 2 -i default "$(getcastname)" &
     echo "$!" >/tmp/recordingpid
+}
+
+keycast() {
+    instantinstall screenkey
+    if ! pgrep screenkey; then
+        screenkey --no-systray & echo "$!" > /tmp/screenkeypid
+    fi
 }
 
 # stop recording and convert to mp4 for quick usage on social media (usually doesn't support mkv)
