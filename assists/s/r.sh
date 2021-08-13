@@ -4,7 +4,7 @@
 
 # inspired by https://old.reddit.com/r/commandline/comments/oceuu3/nifty_little_ocr_script_which_i_use_a_lot_maybe/
 
-instantinstall tesseract tesseract-data-eng maim notify-send xclip || exit 1
+instantinstall tesseract tesseract-data-eng notify-send xclip || exit 1
 
 IMAGE_FILE="$(xdg-user-dir PICTURES)"/ocr.png
 G=$(instantslop -f "%g") || exit 1
