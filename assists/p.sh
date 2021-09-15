@@ -1,9 +1,5 @@
 #!/usr/bin/dash
 
-# assist: text popup
+# assist: password manager
+instantpass
 
-instantinstall sent && \
-
-{
-echo "" | instantmenu -p "input sent text" | sent
-}
