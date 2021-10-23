@@ -15,7 +15,7 @@ displayvolume() {
     VOLUME="$(pamixer --get-volume || {
         awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master) | grep -o '[0-9]*'
     })"
-    dunstify -a instantASSIST -i '/usr/share/icons/Papirus-Dark/symbolic/status/audio-volume-medium-symbolic.svg' -h int:value:"$VOLUME" -r 7368551 Volume
+    dunstify -a instantASSIST -i '/usr/share/icons/Papirus-Dark/symbolic/status/audio-volume-medium-symbolic.svg' -h int:value:"$VOLUME" -r 7368551 "Volume [$VOLUME%]"
 }
 
 case "$1" in
