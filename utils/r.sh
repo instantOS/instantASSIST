@@ -16,6 +16,20 @@ killrecording() {
     kill -9 "$recpid"
 }
 
+finishrecording() {
+    ACTION="$(dunstify -A open,"Open filemanager" "recording finished")"
+    SELECTABLE=("nautilus", "nemo") # list of file managers that can take a file as an argument and select it
+    FILEMANAGER="$(iconf filemanager)"
+
+    if [ "$ACTION" == "open" ]; then
+        if [[ "${SELECTABLE[*]}" =~ "${FILEMANAGER}" ]]; then
+            instantutils open filemanager "$(cat /tmp/recordingname)"
+        else
+            instantutils open filemanager "$VIDEODIR"
+        fi
+    fi
+}
+
 VIDEODIR="$(xdg-user-dir VIDEOS)"
 [ -e "$VIDEODIR" ] || mkdir -p "$VIDEODIR" || exit 1
 
@@ -23,6 +37,7 @@ VIDEODIR="$(xdg-user-dir VIDEOS)"
 checkrecording() {
     if [ -e /tmp/recordingpid ]; then
         killrecording
+        finishrecording
         return 1
     fi
 }
@@ -72,8 +87,11 @@ convertrecording() {
         return 1
     fi
     SOURCEFILE="$(cat /tmp/recordingname)"
+    NEWSOURCEFILE="${SOURCEFILE%.mkv}.mp4"
     notify-send "converting recording"
-    ffmpeg -i "$SOURCEFILE" "${SOURCEFILE%.mkv}.mp4" && rm "$SOURCEFILE"
-    rm /tmp/recordingname
+    ffmpeg -i "$SOURCEFILE" "$NEWSOURCEFILE" && rm "$SOURCEFILE"
+    echo "$NEWSOURCEFILE" > /tmp/recordingname
     notify-send "converting finished"
+    finishrecording
+    rm /tmp/recordingname
 }
