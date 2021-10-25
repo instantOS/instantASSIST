@@ -18,11 +18,10 @@ killrecording() {
 
 finishrecording() {
     ACTION="$(dunstify -A open,"Open filemanager" "recording finished")"
-    SELECTABLE=("nautilus", "nemo") # list of file managers that can take a file as an argument and select it
     FILEMANAGER="$(iconf filemanager)"
 
     if [ "$ACTION" == "open" ]; then
-        if [[ "${SELECTABLE[*]}" =~ "${FILEMANAGER}" ]]; then
+        if [ "$FILEMANAGER" == "nautilus" ]; then
             instantutils open filemanager "$(cat /tmp/recordingname)"
         else
             instantutils open filemanager "$VIDEODIR"
