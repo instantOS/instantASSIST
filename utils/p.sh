@@ -11,10 +11,16 @@ if [ "$1" -eq "$1" ] &>/dev/null; then
     exit
 fi
 
+getvolume() {
+
+    {
+        amixer -D pulse get Master || amixer sget Master
+    } 2>/dev/null |
+        grep -Eo -m1 '1?[0-9]{1,2}%' | grep -o '[0-9]*'
+}
+
 displayvolume() {
-    VOLUME="$(pamixer --get-volume || {
-        awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master) | grep -o '[0-9]*'
-    })"
+    VOLUME="$(getvolume)"
     dunstify -a instantASSIST -i '/usr/share/icons/Papirus-Dark/symbolic/status/audio-volume-medium-symbolic.svg' -h int:value:"$VOLUME" -r 7368551 "Volume [$VOLUME%]"
 }
 
@@ -51,6 +57,11 @@ m)
             amixer set Speaker mute || amixer -D pulse set Speaker mute
         }
     fi
+    ;;
+g)
+    # get volume
+    getvolume
+
     ;;
 *)
     echo "not setting audio"
