@@ -63,6 +63,20 @@ g)
     getvolume
 
     ;;
+-h | --help)
+    echo "usage:
+/usr/share/instantassist/utils/p.sh [argument]
+    j/-
+        decrease volume by 5%
+    k/+
+        increase volume by 5%
+    m
+        toggle mute
+    g
+        get volume in percent
+        "
+    exit
+    ;;
 *)
     echo "not setting audio"
     ;;
