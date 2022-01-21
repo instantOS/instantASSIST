@@ -2,14 +2,10 @@
 
 # assist: scan local network for ssh servers
 
-instantinstall nmap
-instantinstall ifconfig
+instantinstall nmap || exit 1
+instantinstall net-tools || exit 1
 
 getlocalip() {
-    if ! command -v ifconfig &>/dev/null; then
-        instantinstall net-tools || exit 1
-    fi
-
     TEMPIP="$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')"
 
     if grep -q '192' <<<"$TEMPIP"; then
@@ -30,7 +26,6 @@ LOCALNETWORK="$(sed 's/\.[0-9]*$/.0\/24/g' <<<"$LOCALIP")"
 
 scanservers() {
     notify-send -a instantASSIST "scanning local network for ssh servers"
-    instantinstall nmap
     mkdir -p ~/.cache/instantos/
     nmap --open -p 22,8022 "$LOCALNETWORK" -oG - | grep 'Ports: ' | sed 's/Host: \([0-9.]*\).*Ports: \([0-9]*\).*/\1 \2/g' >~/.cache/instantos/localssh
     # TODO: close button
