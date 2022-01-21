@@ -2,8 +2,8 @@
 
 # assist: scan local network for ssh servers
 
-instantinstall nmap
-instantinstall ifconfig
+instantinstall nmap || exit 1
+instantinstall ifconfig || exit 1
 
 getlocalip() {
     if ! command -v ifconfig &>/dev/null; then
