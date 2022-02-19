@@ -5,6 +5,8 @@
 instantinstall nmap || exit 1
 instantinstall net-tools || exit 1
 
+local_ip="$(ip -br address show primary wlp1s0 | grep -oE '((25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])')"
+
 getlocalip() {
     TEMPIP="$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')"
 
@@ -27,7 +29,7 @@ LOCALNETWORK="$(sed 's/\.[0-9]*$/.0\/24/g' <<<"$LOCALIP")"
 scanservers() {
     notify-send -a instantASSIST "scanning local network for ssh servers"
     mkdir -p ~/.cache/instantos/
-    nmap --open -p 22,8022 "$LOCALNETWORK" -oG - | grep 'Ports: ' | sed 's/Host: \([0-9.]*\).*Ports: \([0-9]*\).*/\1 \2/g' >~/.cache/instantos/localssh
+    nmap --open -p 22,8022 "$LOCALNETWORK" -oG - | grep 'Ports: ' | sed 's/Host: \([0-9.]*\).*Ports: \([0-9]*\).*/\1 \2/g' | sed "s/$local_ip/(local) $local_ip/g" >~/.cache/instantos/localssh
     # TODO: close button
 }
 
