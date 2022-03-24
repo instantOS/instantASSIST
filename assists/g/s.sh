@@ -5,7 +5,8 @@
 instantinstall nmap || exit 1
 instantinstall net-tools || exit 1
 
-local_ip="$(ip -br address show primary wlp1s0 | grep -oE '((25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])')"
+iface="$(ip a | grep -oP '2: \K\w*')"
+local_ip="$(ip -br address show primary $iface | grep -oE '((25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9]?[0-9])')"
 
 getlocalip() {
     TEMPIP="$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')"
