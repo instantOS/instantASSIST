@@ -2,7 +2,7 @@
 
 # assist: scan a qr code to the clipboard
 
-instantinstall zbarimg notify-send xclip || exit 1
+instantinstall zbar notify-send xclip || exit 1
 
 IMAGE_FILE="$(xdg-user-dir PICTURES)"/qrcode.png
 
