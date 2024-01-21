@@ -2,10 +2,10 @@
 
 # assist: adjust display brightness
 
-if [ -e /sys/class/backlight/ ] && [ "$(find /sys/class/backlight | wc -l)" = "1" ]; then
-    BGPU="/sys/class/backlight/$(ls /sys/class/backlight/)"
-    MAXBRIGHT=$(cat "$BGPU/max_brightness")
-    INSTANTOS_BRIGHTSTEP=${INSTANTOS_BRIGHTSTEP:-$(($MAXBRIGHT / 20))}
+if [ -e /sys/class/backlight/ ] && [ "$(find /sys/class/backlight | wc -l)" -gt "0" ]; then
+    BRIGHTNESS_DIR="/sys/class/backlight/$(ls /sys/class/backlight/ | tail -1)"
+    MAXBRIGHT=$(cat "$BRIGHTNESS_DIR/max_brightness")
+    INSTANTOS_BRIGHTSTEP=${INSTANTOS_BRIGHTSTEP:-$((MAXBRIGHT / 20))}
 else
     if [ -z "$NOBRIGHTMESSAGE" ] && ! [ -e /tmp/shuttingdown ]; then
         notify-send -a instantASSIST 'setting brightness is not supported on this device'
@@ -15,12 +15,11 @@ else
 fi
 
 syncbright() {
-    echo "$1" >"$BGPU/brightness"
+    echo "$1" >"$BRIGHTNESS_DIR/brightness"
 }
 
 brightness() {
-
-    BRIGHTNESS="$(cat "$BGPU"/brightness)"
+    BRIGHTNESS="$(cat "$BRIGHTNESS_DIR"/brightness)"
     case "$1" in
     -inc)
         bright=$((BRIGHTNESS + $2))
@@ -48,7 +47,6 @@ brightness() {
         ;;
 
     esac
-
 }
 
 # argument handling before instantmenu
@@ -66,7 +64,7 @@ if [ -n "$1" ]; then
         brightness -dec "${INSTANTOS_BRIGHTSTEP:-5}"
         ;;
     g)
-        cat "$BGPU/brightness"
+        cat "$BRIGHTNESS_DIR/brightness"
         ;;
     m)
         echo "$MAXBRIGHT"
