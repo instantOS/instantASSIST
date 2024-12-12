@@ -2,7 +2,7 @@
 
 # assist: math keyboard
 
-height=$(wc -l </usr/share/instantassist/data/m)
+height="$(wc -l </usr/share/instantassist/data/m)"
 
 if [[ "$height" -gt 30 ]]; then
     heightfit=30
