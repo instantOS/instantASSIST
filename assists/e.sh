@@ -1,7 +1,7 @@
 #!/bin/bash
 # assist: emoji picker
 
-cd || exit 
+cd || exit
 
 # exit and remove leftover files
 fail() {
@@ -18,13 +18,13 @@ fail() {
 if ! [ -e .cache/emoji/list.txt ]; then
     notify-send -a instantASSIST "downloading emoji list"
     mkdir -p .cache/emoji
-    cd .cache/emoji || exit 
+    cd .cache/emoji || exit
 
     if ! checkinternet && ! ping -c 1 google.com; then
         fail "no internet"
     fi
 
-    if ! curl -s 'https://unicode.org/Public/emoji/13.0/emoji-test.txt' |
+    if ! curl -s 'https://unicode.org/Public/emoji/16.0/emoji-test.txt' |
         grep 'E[0-9]' | grep '#' | grep -o '#.*' |
         sed 's/# \(.*\)E[0-9]*\.[0-9]* \(.*\)/\2 \1/g' >list.txt; then
         fail "unknown error"
@@ -37,9 +37,9 @@ if ! [ -e .cache/emoji/list.txt ]; then
 fi
 
 # pick emojis using
-cd || exit 
+cd || exit
 
-EMOJI="$(cat .cache/emoji/list.txt | instantmenu -b -l 20 -p 'emoji picker' | grep -o ' [^a-zA-Z0-9]*$' | grep -o '[^ ]*')"
+EMOJI="$(instantmenu -b -l 20 -p 'emoji picker' <.cache/emoji/list.txt | grep -o ' [^a-zA-Z0-9]*$' | grep -o '[^ ]*')"
 
 if [ -z "$EMOJI" ]; then
     exit
