@@ -15,7 +15,8 @@ else
 fi
 
 syncbright() {
-    echo "$1" >"$BRIGHTNESS_DIR/brightness"
+    brightnessctl set "$1"
+    # echo "$1" >"$BRIGHTNESS_DIR/brightness"
 }
 
 brightness() {
