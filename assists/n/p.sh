@@ -2,20 +2,20 @@
 
 # assist: pick a color from the screen into the clipboard
 
-instantinstall colorpicker && \
+# TODO: introduce wayland support
+instantinstall colorpicker &&
+    {
+        DATA=$(colorpicker --one-shot --short | tr -d '\n')
+        echo "$DATA" | xclip -selection clipboard
 
-{
-DATA=$(colorpicker --one-shot --short | tr -d '\n')
-echo "$DATA" | xclip -selection clipboard
+        SCDIR="/tmp/instantos/colorpicker/$(whoami)"
+        mkdir -p "$SCDIR"
+        PICNAME="$(date "+%s")".png
 
-SCDIR="/tmp/instantos/colorpicker/$(whoami)"
-mkdir -p "$SCDIR"
-PICNAME="$(date "+%s")".png
+        # create picture with the color
+        convert -size 45x45 "xc:$DATA" "$SCDIR/$PICNAME"
 
-# create picture with the color
-convert -size 45x45 "xc:$DATA" "$SCDIR/$PICNAME"
+        notify-send "$DATA copied to clipboard" --icon="$SCDIR/$PICNAME"
 
-notify-send "$DATA copied to clipboard" --icon="$SCDIR/$PICNAME"
-
-rm "$SCDIR/$PICNAME"
-}
+        rm "$SCDIR/$PICNAME"
+    }
