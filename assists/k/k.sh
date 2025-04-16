@@ -10,7 +10,9 @@ else
     heightfit="$height"
 fi
 
+# TODO: expand data to include more letters
 LETTER=$(instantmenu -i -b -l "$heightfit" </usr/share/instantassist/data/m | grep -o '^.')
 [ -n "$LETTER" ] || exit 0
 
+# TODO: introduce wayland support
 xdotool type "$LETTER"

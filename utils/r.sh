@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # screen recording functions
+# TODO: introduce wayland support
 
 killrecording() {
     notify-send "stopping recording"

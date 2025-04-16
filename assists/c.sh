@@ -1,12 +1,11 @@
 #!/usr/bin/dash
 
-# assist: toggle compositing
+# assist: toggle caffeine
 
-if pgrep picom; then
-    notify-send -a instantASSIST ' compositing disabled'
-    pkill picom
-    exit
+# TODO: add x11 support
+
+if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+    kitty -e bash -c "systemd-inhibit --what=idle --who=Caffeine --why=Caffeine --mode=block sleep inf"
 else
-    notify-send -a instantASSIST ' compositing enabled'
-    ipicom
+    notify-send -a instantASSIST 'X11 support WIP'
 fi
