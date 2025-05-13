@@ -3,6 +3,15 @@
 # assist: take screenshot and annotate it using flameshot
 # TODO: configure flameshot for wayland
 
-instantinstall flameshot && \
-sleep 0.1 && \
-flameshot gui
+instantinstall flameshot
+sleep 0.1
+if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+    export SDL_VIDEODRIVER=wayland
+    export _JAVA_AWT_WM_NONREPARENTING=1
+    export QT_QPA_PLATFORM=wayland
+    export XDG_CURRENT_DESKTOP=sway
+    export XDG_SESSION_DESKTOP=sway
+    flameshot gui
+else
+    flameshot gui
+fi
