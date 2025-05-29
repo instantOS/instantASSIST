@@ -2,3 +2,4 @@ cache
 .nvimlog
 cache/*
 tags
+.aider*
