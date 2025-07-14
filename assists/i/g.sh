@@ -2,4 +2,4 @@
 
 # assist: ask Gemini about the clipboard content
 
-/usr/share/instantassist/utils/i.sh
+/usr/share/instantassist/utils/i.sh google

@@ -17,10 +17,10 @@ ENCODED="$(printf '%s' "$CLIPBOARD_CONTENT" | jq -s -R -r @uri)"
 
 LLM_URL=""
 
-if [ -z "$2" ]; then
+if [ -z "$1" ]; then
     LLM_URL="https://chat.openai.com/?prompt"
 else
-    case "$2" in
+    case "$1" in
     google | gemini | g)
         LLM_URL="https://gemini.google.com/?q"
         ;;
