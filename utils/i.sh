@@ -14,10 +14,34 @@ if [ -z "$CLIPBOARD_CONTENT" ]; then
 fi
 
 ENCODED="$(printf '%s' "$CLIPBOARD_CONTENT" | jq -s -R -r @uri)"
-CHATGPT_URL="https://chat.openai.com/?prompt=$ENCODED"
+
+LLM_URL=""
+
+if [ -z "$2" ]; then
+    LLM_URL="https://chat.openai.com/?prompt"
+else
+    case "$2" in
+    google | gemini | g)
+        LLM_URL="https://gemini.google.com/?q"
+        ;;
+    openai | chatgpt | o)
+        LLM_URL="https://chat.openai.com/?prompt"
+        ;;
+    claude | anthropic | c)
+        LLM_URL="https://claude.ai/new?q"
+        ;;
+    *)
+        LLM_URL="https://chat.openai.com/?prompt"
+        ;;
+        # Coral, Kimi, DeepSeek etc. do not support this (yet)
+        # If they do at some point, please notify me ;)
+    esac
+fi
+
+MESSAGE_URL="$LLM_URL=$ENCODED"
 
 if command -v instantutils >/dev/null 2>&1; then
-    instantutils open browser "$CHATGPT_URL"
+    instantutils open browser "$MESSAGE_URL"
 else
-    xdg-open "$CHATGPT_URL"
+    xdg-open "$LLM_URL"
 fi
