@@ -45,3 +45,11 @@ if command -v instantutils >/dev/null 2>&1; then
 else
     xdg-open "$LLM_URL"
 fi
+
+if [ "$XDG_SESSION_TYPE" = "wayland" ] &&
+    command -v swaymsg >/dev/null &&
+    [ -n "$SWAYSOCK" ]; then
+    # TODO: come up with something better than waiting a fixed amount of time
+    sleep 4
+    swaymsg '[urgent=latest] focus'
+fi
