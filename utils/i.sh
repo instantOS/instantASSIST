@@ -50,6 +50,8 @@ if [ "$XDG_SESSION_TYPE" = "wayland" ] &&
     command -v swaymsg >/dev/null &&
     [ -n "$SWAYSOCK" ]; then
     # TODO: come up with something better than waiting a fixed amount of time
+    sleep 0.1
+    swaymsg '[urgent=latest] focus'
     sleep 4
     swaymsg '[urgent=latest] focus'
 fi
