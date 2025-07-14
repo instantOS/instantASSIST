@@ -1,6 +1,7 @@
-#/usr/bin/dash
+#!/usr/bin/dash
 
 # assist: search man pages
+
 page="$(
 	ls $(
 		man -w |
