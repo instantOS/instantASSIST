@@ -2,9 +2,18 @@
 
 # main menu to access instantASSIST
 
-ASSIST=$(cat /usr/share/instantassist/cache/cache | instantmenu -i -p instantASSIST -F -ct | grep -o '^.')
+ASSIST=$( (cat /usr/share/instantassist/cache/cache; echo /search assists) | instantmenu -i -p instantASSIST -F -ct | grep -o '^.')
 
 [ -z "$ASSIST" ] && exit
+
+if [ "$ASSIST" = '/' ]; then
+    SCRIPTPATH="/usr/share/instantassist/assists/\
+$(cat /usr/share/instantassist/cache/search |
+instantmenu -p 'assist:' -l 8 -i -g 3 -q 'search assists' -h -1 -r |
+sed 's/^.*(//;s/)$//;s/.$/\/&/;s/^\///')"
+    echo $SCRIPTPATH
+    [ -e "$SCRIPTPATH" ] && exit
+else
 
 if [ -d /usr/share/instantassist/assists/"$ASSIST" ]; then
     ASSIST2="$(instantmenu -i -p instantASSIST -n -h 32 -F -ct </usr/share/instantassist/cache/"$ASSIST"/cache | grep -o '^.')"
@@ -17,7 +26,7 @@ else
     fi
     SCRIPTPATH=/usr/share/instantassist/assists/"$ASSIST"
 fi
+fi
 
 "${SCRIPTPATH}.sh" &
 iconf lastassist "${SCRIPTPATH}.sh"
-
