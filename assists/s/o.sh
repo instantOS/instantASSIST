@@ -30,7 +30,7 @@ if [ "$XDG_SESSION_TYPE" = "wayland" ] && command -v swaymsg >/dev/null && [ -n 
         swaymsg "[title=\"instantASSIST screen freeze\"]" resize set "$W" px "$H" px && break
     done
 else
-    instantwmctrl specialnext 1
+    instantwmctl specialnext 1
     feh --title "instantASSIST screen freeze" --geometry "$G" "$SCDIR/$PICNAME" &
 fi
 
